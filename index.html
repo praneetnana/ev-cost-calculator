@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="color-scheme" content="dark light">
+<title>EV vs ICE</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="EV vs ICE">
+<meta name="theme-color" content="#0a0f1e" id="metaTheme">
+<link rel="manifest" id="manifest-link">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* === DARK (default) === */
+:root, [data-theme=“dark”]{
+–bg:#0a0f1e;–card:#0f1628;–card-b:#1e2d4d;
+–inner:#131c35;–inner-b:#1a2640;–inner-win:linear-gradient(135deg,#131c35,#0f2318);
+–pill:#151f38;–pill-b:#1e2d4d;–pill-t:#7a90b8;–pill-v:#a8c0e0;
+–h1:#e8edf5;–sub:#5a6a8a;–blue:#3b82f6;–sec:#3b5280;
+–name:#c8d8f0;–rlbl:#4a6080;–rval:#8aabcc;–rbrd:#1a2640;
+–merc-b:#c0794a;–merc:#e8866a;–esk-b:#4a90d9;–esk:#6aabee;
+–sol-b:#3aaa6a;–sol:#4acc80;
+–tbl:#6a80a0;–tbl-lbl:#5a6a8a;–tbl-brd:#111a2e;–tbl-tot:#8aabcc;
+–bar-t:#111a2e;–foot-t:#2e3f60;–foot-b:#1e2d4d;
+–info-bg:#0e1520;–info-b:#1a2640;–info-t:#4a6080;–info-s:#6a90b8;
+–batt-bg:#0a0f1e;–batt-b:#1e2d4d;–batt-seg:rgba(10,15,30,0.3);–batt-lbl:#4a6080;
+–tog-bg:#151f38;–tog-b:#1e2d4d;–tog-t:#7a90b8;
+–input-b:#3b82f6;
+color-scheme: dark;
+}
+
+/* === LIGHT === */
+[data-theme=“light”]{
+–bg:#f0f2f5;–card:#ffffff;–card-b:#d8dde6;
+–inner:#f5f7fa;–inner-b:#dde2ea;–inner-win:linear-gradient(135deg,#f5f7fa,#e8f5ee);
+–pill:#edf0f5;–pill-b:#d0d8e4;–pill-t:#4a5a7a;–pill-v:#1a2a4a;
+–h1:#1a2440;–sub:#6a7a9a;–blue:#2563eb;–sec:#5a6a8a;
+–name:#1a2a4a;–rlbl:#6a7a9a;–rval:#2a4a6a;–rbrd:#e2e6ee;
+–merc-b:#b0603a;–merc:#c0502a;–esk-b:#2a70c0;–esk:#1a60b0;
+–sol-b:#1a8a4a;–sol:#168a40;
+–tbl:#4a5a7a;–tbl-lbl:#5a6a8a;–tbl-brd:#edf0f5;–tbl-tot:#1a2a4a;
+–bar-t:#e2e6ee;–foot-t:#8a9ab0;–foot-b:#c0c8d4;
+–info-bg:#f0f2f5;–info-b:#dde2ea;–info-t:#5a6a8a;–info-s:#2a4a6a;
+–batt-bg:#e2e6ee;–batt-b:#c0c8d4;–batt-seg:rgba(200,210,220,0.5);–batt-lbl:#5a6a8a;
+–tog-bg:#edf0f5;–tog-b:#d0d8e4;–tog-t:#4a5a7a;
+–input-b:#2563eb;
+color-scheme: light;
+}
+
+body{
+background:var(–bg);font-family:‘DM Sans’,sans-serif;
+padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+min-height:100vh;transition:background .3s;
+-webkit-text-size-adjust:100%;
+}
+.wrap{max-width:720px;margin:0 auto;padding:16px 14px;}
+
+/* Header */
+.hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;}
+.hdr-left{flex:1;min-width:0;}
+.tag{font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(–blue);margin-bottom:6px;}
+.hdr h1{font-family:‘Bebas Neue’,sans-serif;font-size:26px;letter-spacing:1.5px;color:var(–h1);line-height:1.1;margin-bottom:4px;}
+.hdr h1 .ic{color:var(–merc)}.hdr h1 .ev{color:var(–esk)}
+.hdr .sub{color:var(–sub);font-size:11px;}
+.tog{
+background:var(–tog-bg);border:1px solid var(–tog-b);border-radius:20px;
+padding:6px 14px;font-size:12px;color:var(–tog-t);cursor:pointer;
+flex-shrink:0;margin-left:10px;margin-top:4px;transition:all .3s;font-family:inherit;
+}
+
+/* Controls */
+.ctrls{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;}
+.p{
+background:var(–pill);border:1px solid var(–pill-b);border-radius:16px;
+padding:5px 10px;font-size:11px;color:var(–pill-t);font-weight:500;
+display:inline-flex;align-items:center;gap:4px;transition:all .3s;
+}
+.p span{color:var(–pill-v);font-weight:600;}
+.p select{
+background:0;border:0;outline:0;color:var(–pill-v);font-size:11px;font-weight:600;
+font-family:inherit;cursor:pointer;appearance:none;padding-right:12px;
+background-image:url(“data:image/svg+xml,%3Csvg xmlns=‘http://www.w3.org/2000/svg’ width=‘8’ height=‘5’%3E%3Cpath d=‘M0 0l4 5 4-5z’ fill=’%235588cc’/%3E%3C/svg%3E”);
+background-repeat:no-repeat;background-position:right center;
+}
+.p select option{background:var(–pill);color:var(–pill-v)}
+.p input[type=number]{
+background:0;border:0;border-bottom:1px solid var(–input-b);outline:0;
+color:var(–pill-v);font-size:11px;font-weight:600;font-family:inherit;
+width:50px;-moz-appearance:textfield;
+}
+.p input::-webkit-outer-spin-button,.p input::-webkit-inner-spin-button{-webkit-appearance:none}
+
+/* Section titles */
+.st{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(–sec);margin:20px 0 10px;}
+
+/* Vehicle cards — stack on mobile */
+.cards{display:flex;flex-direction:column;gap:10px;margin-bottom:4px;}
+.vc{
+background:var(–inner);border:1px solid var(–inner-b);border-radius:12px;
+padding:14px;position:relative;overflow:hidden;transition:all .3s;
+}
+.vc.win{border-color:#16a34a55;background:var(–inner-win);}
+.vc.win::after{
+content:‘BEST VALUE’;position:absolute;top:8px;right:-20px;
+background:#16a34a;color:#fff;font-size:7px;font-weight:700;
+letter-spacing:1.5px;padding:2px 24px;transform:rotate(35deg);
+}
+.vc-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
+.vc-brand{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;}
+.vc-name{font-size:13px;font-weight:600;color:var(–name);}
+.vc-total-val{font-family:‘Bebas Neue’,sans-serif;font-size:28px;letter-spacing:1px;}
+.vc .merc-b{color:var(–merc-b)}.vc .merc-t{color:var(–merc)}
+.vc .esk-b{color:var(–esk-b)}.vc .esk-t{color:var(–esk)}
+.vc .sol-b{color:var(–sol-b)}.vc .sol-t{color:var(–sol)}
+.vc-rows{display:grid;grid-template-columns:1fr 1fr;gap:2px 12px;}
+.vr{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(–rbrd);font-size:11px;}
+.vr:last-child{border:0}
+.vr-l{color:var(–rlbl);font-weight:500}.vr-v{color:var(–rval);font-weight:600;}
+
+/* 3-year table — horizontal scroll on mobile */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:4px;border-radius:10px;}
+.tbl{width:100%;border-collapse:collapse;min-width:360px;}
+.tbl th{
+font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+color:var(–sec);text-align:right;padding:8px 8px;border-bottom:1px solid var(–inner-b);
+position:sticky;top:0;background:var(–card);
+}
+.tbl th:first-child{text-align:left}
+.tbl td{padding:8px;font-size:12px;text-align:right;color:var(–tbl);border-bottom:1px solid var(–tbl-brd);}
+.tbl td:first-child{text-align:left;color:var(–tbl-lbl);font-size:11px;font-weight:500;}
+.tbl tr.tot td{font-weight:700;font-size:13px;border-top:1px solid var(–inner-b);border-bottom:0;padding-top:12px;}
+.tbl tr.tot td:first-child{color:var(–tbl-tot)}
+.tbl .sav td{font-size:11px}.tbl .sav-l{color:var(–sec);font-style:italic}
+.mv{color:var(–merc)!important}.ev{color:var(–esk)!important}.sv{color:var(–sol)!important}
+
+/* Bars */
+.bars{margin-bottom:4px;}
+.br{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.br-l{font-size:11px;color:var(–tbl-lbl);font-weight:500;width:100px;flex-shrink:0;}
+.br-t{flex:1;background:var(–bar-t);border-radius:4px;height:20px;overflow:hidden;}
+.br-f{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:8px;transition:width .3s;}
+.br-f span{font-size:10px;font-weight:700;color:#fff;white-space:nowrap;}
+
+/* Charge time section */
+.batt-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;}
+.batt-box{
+background:var(–inner);border:1px solid var(–inner-b);border-radius:10px;
+padding:10px;transition:all .3s;
+}
+.batt-box .lbl{font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(–sec);margin-bottom:3px;}
+.batt-box .val{font-family:‘Bebas Neue’,sans-serif;font-size:22px;letter-spacing:1px;line-height:1.1;}
+.batt-box .note{font-size:10px;color:var(–sec);margin-top:2px;}
+
+/* Battery gauge */
+.gauge-wrap{
+background:var(–inner);border:1px solid var(–inner-b);border-radius:10px;
+padding:12px 14px;margin-bottom:10px;display:flex;align-items:center;gap:14px;transition:all .3s;
+}
+.gauge{position:relative;flex-shrink:0;width:160px;height:44px;}
+.gauge-body{
+position:absolute;inset:0;border:2px solid var(–batt-b);border-radius:8px;
+overflow:hidden;background:var(–batt-bg);
+}
+.gauge-fill{
+height:100%;border-radius:6px;transition:width .4s,background .4s;position:relative;
+}
+.gauge-segs{position:absolute;inset:0;display:flex;}
+.gauge-segs div{flex:1;border-right:1px solid var(–batt-seg)}
+.gauge-segs div:last-child{border:0}
+.gauge-nub{
+position:absolute;right:-6px;top:50%;transform:translateY(-50%);
+width:6px;height:18px;background:var(–batt-b);border-radius:0 3px 3px 0;
+}
+.gauge-info{flex:1}
+.gauge-pct{font-family:‘Bebas Neue’,sans-serif;font-size:32px;letter-spacing:1px;line-height:1;}
+.gauge-lbl{font-size:11px;color:var(–batt-lbl);margin-top:1px;}
+
+/* Charge table — horizontal scroll */
+.ct-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:10px;border-radius:10px;}
+.ct{width:100%;border-collapse:collapse;min-width:500px;}
+.ct th{
+font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+color:var(–sec);text-align:center;padding:6px 6px;border-bottom:1px solid var(–inner-b);
+white-space:nowrap;
+}
+.ct th:first-child{text-align:left}
+.ct td{padding:7px 6px;font-size:11px;text-align:center;color:var(–tbl);border-bottom:1px solid var(–tbl-brd);}
+.ct td:first-child{text-align:left;color:var(–tbl-lbl);font-weight:600;}
+.ct .esk-c{font-weight:600;color:var(–rval)}.ct .sol-c{color:var(–sol)!important;font-weight:600}
+
+/* Info box */
+.info{
+background:var(–info-bg);border:1px solid var(–info-b);border-radius:10px;
+padding:10px 12px;margin-bottom:20px;font-size:10px;color:var(–info-t);line-height:1.6;transition:all .3s;
+}
+.info strong{color:var(–info-s)}
+.info .sol-s{color:var(–sol)}.info .merc-s{color:var(–merc-b)}
+
+/* Footer */
+.foot{
+border-top:1px solid var(–inner-b);padding-top:12px;
+display:flex;justify-content:space-between;align-items:center;
+}
+.foot-note{font-size:10px;color:var(–foot-t);line-height:1.5;}
+.foot-badge{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(–foot-b);}
+
+/* Desktop: 3-col cards */
+@media(min-width:600px){
+.cards{flex-direction:row;}
+.cards .vc{flex:1;}
+.vc-rows{grid-template-columns:1fr;}
+.batt-grid{grid-template-columns:1fr 1fr 1fr;}
+.gauge{width:200px;height:50px;}
+.hdr h1{font-size:32px;}
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hdr">
+    <div class="hdr-left">
+      <div class="tag">Vehicle Running Cost Analysis</div>
+      <h1><span class="ic" id="hIce">Mercedes C180K</span> vs <span class="ev" id="hEv">BYD Dolphin Surf</span></h1>
+      <div class="sub">Monthly &amp; 3-Year Running Cost Comparison</div>
+    </div>
+    <button class="tog" id="togBtn" onclick="tog()">☀️</button>
+  </div>
+
+  <div class="ctrls">
+    <div class="p">🚗 <select id="iceS" onchange="calc()">
+      <option value="c180k">Mercedes C180K</option>
+      <option value="c200k">Mercedes C200K (2004)</option>
+      <option value="c220cdi">Mercedes C220CDI (2008)</option>
+      <option value="etios">Toyota Etios Sprint</option>
+    </select></div>
+    <div class="p">⚡ <select id="evS" onchange="calc()">
+      <option value="dolphin">Dolphin Surf Dynamic</option>
+      <option value="seal7">Seal 7 AWD Performance</option>
+    </select></div>
+    <div class="p">📍 <select id="kmS" onchange="calc()">
+      <option value="200">200 km/mo</option>
+      <option value="400">400 km/mo</option>
+      <option value="600">600 km/mo</option>
+      <option value="800">800 km/mo</option>
+      <option value="1000" selected>1,000 km/mo</option>
+      <option value="1500">1,500 km/mo</option>
+      <option value="2000">2,000 km/mo</option>
+      <option value="2500">2,500 km/mo</option>
+      <option value="3000">3,000 km/mo</option>
+    </select></div>
+    <div class="p">⛽ <select id="fuelS" onchange="hFuel()">
+      <option value="20">R20/L</option><option value="21">R21/L</option>
+      <option value="22">R22/L</option><option value="23">R23/L</option>
+      <option value="23.50" selected>R23.50/L</option><option value="24">R24/L</option>
+      <option value="25">R25/L</option><option value="26">R26/L</option>
+      <option value="27">R27/L</option><option value="28">R28/L</option>
+      <option value="29">R29/L</option><option value="30">R30/L</option>
+      <option value="32">R32/L</option>
+      <option value="x">Custom</option>
+    </select><input type="number" id="fuelX" style="display:none" placeholder="R/L" step="0.5" min="10" max="50" oninput="calc()"></div>
+    <div class="p">⚡ <select id="eskS" onchange="hEsk()">
+      <option value="3.50" selected>R3.50/kWh</option><option value="4.00">R4.00/kWh</option>
+      <option value="4.50">R4.50/kWh</option><option value="5.00">R5.00/kWh</option>
+      <option value="5.50">R5.50/kWh</option>
+      <option value="x">Custom</option>
+    </select><input type="number" id="eskX" style="display:none" placeholder="R/kWh" step="0.1" min="0.5" max="15" oninput="calc()"></div>
+    <div class="p">☀️ Solar <span>R0/kWh</span></div>
+    <div class="p" id="pIns">🛡 ICE <span id="pInsV">R600</span></div>
+    <div class="p" id="pEvIns">🛡 EV <span id="pEvInsV">R1,000</span></div>
+    <div class="p" id="pMnt">🔧 <span id="pMntV">R500/mo</span></div>
+  </div>
+
+  <div class="st">Monthly Breakdown</div>
+  <div class="cards">
+    <div class="vc">
+      <div class="vc-top">
+        <div><div class="vc-brand merc-b" id="iceBrand">MERCEDES</div><div class="vc-name" id="iceName">C180K</div></div>
+        <div class="vc-total-val merc-t" id="iceTotal">R3,803</div>
+      </div>
+      <div class="vc-rows">
+        <div class="vr"><span class="vr-l">Consumption</span><span class="vr-v" id="iceCons">11.5 L/100km</span></div>
+        <div class="vr"><span class="vr-l">Fuel used</span><span class="vr-v" id="iceFuelUsed">115 L</span></div>
+        <div class="vr"><span class="vr-l">Fuel cost</span><span class="vr-v" id="iceFuelCost">R2,702.50</span></div>
+        <div class="vr"><span class="vr-l">Insurance</span><span class="vr-v" id="iceInsD">R600</span></div>
+        <div class="vr"><span class="vr-l">Maintenance</span><span class="vr-v" id="iceMntD">R500</span></div>
+      </div>
+    </div>
+    <div class="vc">
+      <div class="vc-top">
+        <div><div class="vc-brand esk-b" id="evEskBrand">BYD DOLPHIN</div><div class="vc-name" id="evEskName">Surf Dynamic — Eskom</div></div>
+        <div class="vc-total-val esk-t" id="eskTotal">R1,507</div>
+      </div>
+      <div class="vc-rows">
+        <div class="vr"><span class="vr-l">Consumption</span><span class="vr-v" id="evEskCons">13.2 kWh/100</span></div>
+        <div class="vr"><span class="vr-l">Energy used</span><span class="vr-v" id="eskUsed">132 kWh</span></div>
+        <div class="vr"><span class="vr-l">Energy cost</span><span class="vr-v" id="eskCostD">R462.00</span></div>
+        <div class="vr"><span class="vr-l">Insurance</span><span class="vr-v" id="evEskIns">R1,000</span></div>
+        <div class="vr"><span class="vr-l">Maintenance</span><span class="vr-v">R0</span></div>
+      </div>
+    </div>
+    <div class="vc win">
+      <div class="vc-top">
+        <div><div class="vc-brand sol-b" id="evSolBrand">BYD DOLPHIN</div><div class="vc-name" id="evSolName">Surf Dynamic — Solar</div></div>
+        <div class="vc-total-val sol-t" id="solTotal">R1,000</div>
+      </div>
+      <div class="vc-rows">
+        <div class="vr"><span class="vr-l">Consumption</span><span class="vr-v" id="evSolCons">13.2 kWh/100</span></div>
+        <div class="vr"><span class="vr-l">Energy used</span><span class="vr-v" id="solUsed">132 kWh</span></div>
+        <div class="vr"><span class="vr-l">Energy cost</span><span class="vr-v">R0</span></div>
+        <div class="vr"><span class="vr-l">Insurance</span><span class="vr-v" id="evSolIns">R1,000</span></div>
+        <div class="vr"><span class="vr-l">Maintenance</span><span class="vr-v">R0</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="st">3-Year Cumulative (36 months)</div>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr>
+        <th>Cost Item</th>
+        <th id="th1">Mercedes C180K</th>
+        <th id="th2">Dolphin (Eskom)</th>
+        <th id="th3">Dolphin (Solar)</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Fuel / Energy</td><td class="mv" id="t1f"></td><td class="ev" id="t2f"></td><td class="sv">R0</td></tr>
+        <tr><td>Insurance</td><td class="mv" id="t1i"></td><td class="ev" id="t2i"></td><td class="sv" id="t3i"></td></tr>
+        <tr><td>Maintenance</td><td class="mv" id="t1m"></td><td>—</td><td>—</td></tr>
+        <tr class="tot"><td>3-Year Total</td><td class="mv" id="t1t"></td><td class="ev" id="t2t"></td><td class="sv" id="t3t"></td></tr>
+        <tr class="sav"><td class="sav-l" id="sv1">Saving vs Mercedes C180K</td><td>—</td><td class="ev" id="s2"></td><td class="sv" id="s3"></td></tr>
+        <tr class="sav"><td class="sav-l" id="sv2">Annual saving</td><td>—</td><td class="ev" id="a2"></td><td class="sv" id="a3"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="st">3-Year Running Cost</div>
+  <div class="bars">
+    <div class="br"><div class="br-l" id="bl1">Mercedes C180K</div><div class="br-t"><div class="br-f" id="b1" style="width:100%;background:linear-gradient(90deg,#c0402a,#e8866a)"><span id="bv1"></span></div></div></div>
+    <div class="br"><div class="br-l" id="bl2">Dolphin — Eskom</div><div class="br-t"><div class="br-f" id="b2" style="width:40%;background:linear-gradient(90deg,#1a60c0,#6aabee)"><span id="bv2"></span></div></div></div>
+    <div class="br"><div class="br-l" id="bl3">Dolphin — Solar</div><div class="br-t"><div class="br-f" id="b3" style="width:28%;background:linear-gradient(90deg,#0e7a3c,#4acc80)"><span id="bv3"></span></div></div></div>
+  </div>
+
+  <div class="st" id="ctTitle">Dolphin Surf — Charge Time Calculator</div>
+  <div class="ctrls">
+    <div class="p">🚗 <select id="ctDist" onchange="chargeCalc()">
+      <option value="20">20 km</option><option value="40">40 km</option>
+      <option value="60">60 km</option><option value="80">80 km</option>
+      <option value="100">100 km</option><option value="120">120 km</option>
+      <option value="140">140 km</option><option value="160">160 km</option>
+      <option value="180">180 km</option><option value="200">200 km</option>
+      <option value="250">250 km</option><option value="300">300 km</option>
+      <option value="350">350 km</option><option value="400">400 km</option>
+    </select></div>
+    <div class="p">Energy: <span id="ctE">2.64 kWh</span></div>
+  </div>
+
+  <div class="batt-grid">
+    <div class="batt-box"><div class="lbl">Total Battery</div><div class="val" id="btTot" style="color:var(--tbl)">38.88 kWh</div><div class="note" id="btRange">~295 km range</div></div>
+    <div class="batt-box"><div class="lbl">Remaining</div><div class="val" id="btRem" style="color:var(--esk)">36.24 kWh</div><div class="note"><span id="btPct">93.2</span>%</div></div>
+    <div class="batt-box"><div class="lbl">Range Left</div><div class="val" id="btKm" style="color:var(--sol)">275 km</div><div class="note">after trip</div></div>
+  </div>
+
+  <div class="gauge-wrap">
+    <div class="gauge">
+      <div class="gauge-body">
+        <div class="gauge-fill" id="gFill" style="width:93%;background:linear-gradient(90deg,#0e7a3c,#4acc80)">
+          <div class="gauge-segs"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        </div>
+      </div>
+      <div class="gauge-nub"></div>
+    </div>
+    <div class="gauge-info">
+      <div class="gauge-pct" id="gPct" style="color:#4acc80">93.2%</div>
+      <div class="gauge-lbl" id="gLbl">36.24 kWh · 275 km</div>
+    </div>
+  </div>
+
+  <div class="ct-wrap">
+    <table class="ct">
+      <thead><tr>
+        <th style="text-align:left">Charger</th><th>kW</th>
+        <th style="color:var(--esk)">⚡ Time</th><th style="color:var(--esk)">⚡ Cost</th>
+        <th style="color:var(--sol)">☀️ Time</th><th style="color:var(--sol)">☀️ Cost</th>
+        <th style="color:var(--merc)" id="ctFH">⛽ Fuel</th><th>Solar</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>10A</td><td>2.3</td><td class="esk-c" id="ce10"></td><td class="esk-c" id="cc10"></td><td class="sol-c" id="cs10"></td><td class="sol-c">R0</td><td style="color:var(--merc)" id="cf10"></td><td style="font-size:9px;color:var(--sec)" id="cn10">✓</td></tr>
+        <tr><td>15A</td><td>3.45</td><td class="esk-c" id="ce15"></td><td class="esk-c" id="cc15"></td><td class="sol-c" id="cs15"></td><td class="sol-c">R0</td><td style="color:var(--merc)" id="cf15"></td><td style="font-size:9px;color:var(--sec)" id="cn15">✓</td></tr>
+        <tr><td>32A</td><td>7.36</td><td class="esk-c" id="ce32"></td><td class="esk-c" id="cc32"></td><td class="sol-c" id="cs32"></td><td class="sol-c">R0</td><td style="color:var(--merc)" id="cf32"></td><td style="font-size:9px;color:var(--merc-b)" id="cn32">⚠ 4kW cap</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info">
+    ☀️ <strong>Solar:</strong> 8×550W = 4.4kW peak · 5.5h sun/day · 80% efficiency → <strong class="sol-s">~19.4 kWh/day</strong>.
+    32A draws 7.36kW &gt; solar. <strong class="merc-s">Capped at 4.0kW</strong> for real-world losses.
+  </div>
+
+  <div class="foot">
+    <div class="foot-note" id="footNote">ICE maintenance included. BYD maintenance R0. No purchase price.</div>
+    <div class="foot-badge">Apr 2026</div>
+  </div>
+
+</div>
+
+<script>
+const ICE={
+  c180k:{b:'Mercedes',n:'C180K',s:'Mercedes C180K',c:11.5,u:'L',ins:600,m:500},
+  c200k:{b:'Mercedes',n:'C200K (2004)',s:'Mercedes C200K',c:11.0,u:'L',ins:600,m:500},
+  c220cdi:{b:'Mercedes',n:'C220CDI (2008)',s:'Mercedes C220CDI',c:7.5,u:'L',ins:600,m:500},
+  etios:{b:'Toyota',n:'Etios Sprint',s:'Toyota Etios Sprint',c:7.5,u:'L',ins:600,m:400}
+};
+const EV={
+  dolphin:{b:'BYD Dolphin',n:'Surf Dynamic',s:'Dolphin Surf',f:'BYD Dolphin Surf Dynamic',c:13.2,bat:38.88,rng:295,ins:1000,p:350000},
+  seal7:{b:'BYD Seal 7',n:'AWD Performance',s:'Seal 7 AWD',f:'BYD Seal 7 AWD Performance',c:13.8,bat:71.8,rng:520,ins:2000,p:880000}
+};
+
+const $=id=>document.getElementById(id);
+const R=n=>'R'+n.toLocaleString('en-ZA',{minimumFractionDigits:0,maximumFractionDigits:0});
+const R2=n=>'R'+n.toLocaleString('en-ZA',{minimumFractionDigits:2,maximumFractionDigits:2});
+function fT(h){const hh=Math.floor(h),mm=Math.round((h-hh)*60);return hh===0?mm+'min':mm===0?hh+'h':hh+'h '+mm+'min';}
+
+function gFuel(){const s=$('fuelS');return s.value==='x'?(parseFloat($('fuelX').value)||23.5):parseFloat(s.value);}
+function gEsk(){const s=$('eskS');return s.value==='x'?(parseFloat($('eskX').value)||3.5):parseFloat(s.value);}
+function hFuel(){const s=$('fuelS'),x=$('fuelX');x.style.display=s.value==='x'?'inline-block':'none';if(s.value==='x')x.focus();calc();}
+function hEsk(){const s=$('eskS'),x=$('eskX');x.style.display=s.value==='x'?'inline-block':'none';if(s.value==='x')x.focus();calc();}
+
+function tog(){
+  const html=document.documentElement;
+  const isNowLight=html.getAttribute('data-theme')==='dark';
+  html.setAttribute('data-theme',isNowLight?'light':'dark');
+  $('togBtn').textContent=isNowLight?'🌙':'☀️';
+  $('metaTheme').content=isNowLight?'#f0f2f5':'#0a0f1e';
+  try{localStorage.setItem('theme',isNowLight?'light':'dark')}catch(e){}
+}
+
+function calc(){
+  const v=ICE[$('iceS').value],e=EV[$('evS').value];
+  const fuel=gFuel(),esk=gEsk(),km=parseFloat($('kmS').value);
+  const L=km*v.c/100,kWh=km*e.c/100;
+  const iF=L*fuel,iM=iF+v.ins+v.m;
+  const eE=kWh*esk,eM=eE+e.ins,sM=e.ins;
+  const iF3=iF*36,iI3=v.ins*36,iM3=v.m*36,iT3=iM*36;
+  const eE3=eE*36,eI3=e.ins*36,eT3=eM*36,sT3=sM*36;
+  const eS3=iT3-eT3,sS3=iT3-sT3;
+
+  // Header
+  $('hIce').textContent=v.s;$('hEv').textContent=e.f;
+
+  // ICE card
+  $('iceBrand').textContent=v.b.toUpperCase();$('iceName').textContent=v.n;
+  $('iceCons').textContent=v.c+' '+v.u+'/100km';
+  $('iceFuelUsed').textContent=L.toFixed(1)+' '+v.u;
+  $('iceFuelCost').textContent=R2(iF);$('iceInsD').textContent=R(v.ins);
+  $('iceMntD').textContent=R(v.m);$('iceTotal').textContent=R(iM);
+
+  // EV cards
+  $('evEskBrand').textContent=e.b.toUpperCase();$('evEskName').textContent=e.n+' — Eskom';
+  $('evEskCons').textContent=e.c+' kWh/100';
+  $('eskUsed').textContent=kWh.toFixed(1)+' kWh';$('eskCostD').textContent=R2(eE);
+  $('evEskIns').textContent=R(e.ins);$('eskTotal').textContent=R(eM);
+
+  $('evSolBrand').textContent=e.b.toUpperCase();$('evSolName').textContent=e.n+' — Solar';
+  $('evSolCons').textContent=e.c+' kWh/100';
+  $('solUsed').textContent=kWh.toFixed(1)+' kWh';$('evSolIns').textContent=R(e.ins);
+  $('solTotal').textContent=R(sM);
+
+  // Pills
+  $('pInsV').textContent='R'+v.ins;$('pEvInsV').textContent='R'+e.ins.toLocaleString('en-ZA');
+  $('pMntV').textContent='R'+v.m+'/mo';
+
+  // Table
+  $('th1').textContent=v.s;$('th2').textContent=e.s+' (Eskom)';$('th3').textContent=e.s+' (Solar)';
+  $('t1f').textContent=R(iF3);$('t2f').textContent=R(eE3);
+  $('t1i').textContent=R(iI3);$('t2i').textContent=R(eI3);$('t3i').textContent=R(eI3);
+  $('t1m').textContent=R(iM3);
+  $('t1t').textContent=R(iT3);$('t2t').textContent=R(eT3);$('t3t').textContent=R(sT3);
+  $('s2').textContent=R(eS3)+' saved';$('s3').textContent=R(sS3)+' saved';
+  $('a2').textContent=R(eS3/3)+'/yr';$('a3').textContent=R(sS3/3)+'/yr';
+  $('sv1').textContent='Saving vs '+v.s;$('sv2').textContent='Annual saving vs '+v.s;
+
+  // Bars
+  $('bl1').textContent=v.s;$('bl2').textContent=e.s+' — Eskom';$('bl3').textContent=e.s+' — Solar';
+  const mx=Math.max(iT3,eT3,sT3);
+  $('b1').style.width=(iT3/mx*100).toFixed(1)+'%';$('bv1').textContent=R(iT3);
+  $('b2').style.width=(eT3/mx*100).toFixed(1)+'%';$('bv2').textContent=R(eT3);
+  $('b3').style.width=(sT3/mx*100).toFixed(1)+'%';$('bv3').textContent=R(sT3);
+
+  // Charge section
+  $('ctTitle').textContent=e.f+' — Charge Time Calculator';
+  $('btTot').textContent=e.bat.toFixed(2)+' kWh';
+  $('btRange').textContent='~'+e.rng+' km range';
+  $('ctFH').textContent='⛽ '+v.s;
+
+  $('footNote').innerHTML=v.s+' maint. R'+v.m+'/mo. '+e.s+' maint. R0. No purchase price.<br>Eskom R'+esk.toFixed(2)+'/kWh · Solar R0 · '+e.s+' '+R(e.p);
+
+  chargeCalc();
+}
+
+function chargeCalc(){
+  const v=ICE[$('iceS').value],e=EV[$('evS').value];
+  const d=parseFloat($('ctDist').value),esk=gEsk(),fl=gFuel();
+  const en=d*e.c/100,lit=d*v.c/100;
+  const ePow={'10':2.3,'15':3.45,'32':7.36},sCap=4.0;
+  const sPow={'10':Math.min(2.3,sCap),'15':Math.min(3.45,sCap),'32':sCap};
+  const eCost=en*esk,fCost=lit*fl;
+  const rem=Math.max(e.bat-en,0),pct=(rem/e.bat*100).toFixed(1),rng=Math.max(Math.round(rem/e.c*100),0);
+
+  $('ctE').textContent=en.toFixed(2)+' kWh';
+  $('btRem').textContent=rem.toFixed(2)+' kWh';
+  $('btRem').style.color=pct>50?'var(--esk)':pct>25?'#c0a030':'var(--merc)';
+  $('btPct').textContent=pct;$('btKm').textContent=rng+' km';
+
+  // Gauge
+  const p=parseFloat(pct);
+  $('gFill').style.width=Math.max(p,1)+'%';
+  $('gFill').style.background=p>50?'linear-gradient(90deg,#0e7a3c,#4acc80)':p>25?'linear-gradient(90deg,#8a6a10,#c0a030)':'linear-gradient(90deg,#8a2a1a,#e8866a)';
+  const gc=p>50?'#4acc80':p>25?'#c0a030':'#e8866a';
+  $('gPct').textContent=pct+'%';$('gPct').style.color=gc;
+  $('gLbl').textContent=rem.toFixed(2)+' kWh · '+rng+' km';
+
+  ['10','15','32'].forEach(a=>{
+    $('ce'+a).textContent=fT(en/ePow[a]);
+    $('cs'+a).textContent=fT(en/sPow[a]);
+    $('cc'+a).textContent='R'+eCost.toFixed(2);
+    $('cf'+a).textContent='R'+fCost.toFixed(2);
+  });
+}
+
+window.onload=function(){
+  try{
+    const saved=localStorage.getItem('theme');
+    if(saved){
+      document.documentElement.setAttribute('data-theme',saved);
+      $('togBtn').textContent=saved==='light'?'🌙':'☀️';
+      if(saved==='light')$('metaTheme').content='#f0f2f5';
+    }
+  }catch(e){}
+  calc();
+  // PWA manifest
+  const m={name:'EV vs ICE',short_name:'EV vs ICE',start_url:'.',display:'standalone',background_color:'#0a0f1e',theme_color:'#0a0f1e',icons:[{src:"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230f1628' width='100' height='100' rx='20'/><text y='62' x='50' text-anchor='middle' font-size='50'>⚡</text></svg>",sizes:'512x512',type:'image/svg+xml',purpose:'any'}]};
+  const b=new Blob([JSON.stringify(m)],{type:'application/json'});
+  $('manifest-link').href=URL.createObjectURL(b);
+  if('serviceWorker' in navigator){const sw=`const C='ev1';self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.addAll(['./']))));self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));`;navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'application/javascript'}))).catch(()=>{});}
+};
+</script>
+
+</body>
+</html>
