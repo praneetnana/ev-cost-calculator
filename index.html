@@ -216,6 +216,9 @@ body{
     <div class="p">⚡ <select id="evS" onchange="calc()">
       <option value="dolphin">Dolphin Surf Dynamic</option>
       <option value="seal7">Seal 7 AWD Performance</option>
+      <option value="sl7c">Sealion 7 Comfort</option>
+      <option value="sl7e">Sealion 7 Excellence</option>
+      <option value="sl7p">Sealion 7 AWD Performance</option>
     </select></div>
     <div class="p">📍 <select id="kmS" onchange="calc()">
       <option value="200">200 km/mo</option><option value="400">400 km/mo</option>
@@ -321,6 +324,7 @@ body{
       <option value="180">180 km</option><option value="200">200 km</option>
       <option value="250">250 km</option><option value="300">300 km</option>
       <option value="350">350 km</option><option value="400">400 km</option>
+      <option value="450">450 km</option><option value="500">500 km</option>
     </select></div>
     <div class="p">Energy: <span id="ctE">2.64 kWh</span></div>
   </div>
@@ -380,7 +384,10 @@ var ICE={
 };
 var EV={
   dolphin:{b:'BYD Dolphin',n:'Surf Dynamic',s:'Dolphin Surf',f:'BYD Dolphin Surf Dynamic',c:13.2,bat:38.88,rng:295,ins:1000,p:350000},
-  seal7:{b:'BYD Seal 7',n:'AWD Performance',s:'Seal 7 AWD',f:'BYD Seal 7 AWD Performance',c:18,bat:77,rng:520,ins:2000,p:880000}
+  seal7:{b:'BYD Seal 7',n:'AWD Performance',s:'Seal 7 AWD',f:'BYD Seal 7 AWD Performance',c:18,bat:77,rng:520,ins:2000,p:880000},
+  sl7c:{b:'BYD Sealion 7',n:'Comfort (RWD)',s:'Sealion 7 Comfort',f:'BYD Sealion 7 Comfort',c:14.9,bat:71.8,rng:482,ins:2000,p:850000},
+  sl7e:{b:'BYD Sealion 7',n:'Excellence (RWD)',s:'Sealion 7 Excellence',f:'BYD Sealion 7 Excellence',c:16.1,bat:91.3,rng:567,ins:2000,p:950000},
+  sl7p:{b:'BYD Sealion 7',n:'AWD Performance',s:'Sealion 7 AWD',f:'BYD Sealion 7 AWD Performance',c:16.8,bat:91.3,rng:542,ins:2000,p:1050000}
 };
 
 function g(id){return document.getElementById(id)}
