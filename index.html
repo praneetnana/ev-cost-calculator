@@ -199,26 +199,123 @@ body{
 
   <div class="hdr">
     <div class="tag">Vehicle Running Cost Analysis</div>
-    <h1><span class="ic" id="hIce">Your Car</span> vs <span class="ev" id="hEv">BYD Dolphin Surf</span></h1>
+    <h1><span class="ic" id="hIce">Your Car</span> vs <span class="ev" id="hEv">Select EV</span></h1>
     <div class="sub">Monthly &amp; 3-Year Running Cost Comparison</div>
   </div>
 
   <div class="ctrls">
     <div class="p">🚗 <select id="iceS" onchange="calc()">
       <option value="" selected disabled>Select vehicle…</option>
-      <option value="c180k">Mercedes C180K</option>
-      <option value="c200k">Mercedes C200K (2004)</option>
-      <option value="c220cdi">Mercedes C220CDI (2008)</option>
-      <option value="etios">Toyota Etios Sprint</option>
-      <option value="polo">VW Polo Vivo (2021)</option>
-      <option value="lc200">Toyota LC200 VX (2009)</option>
+      <optgroup label="⭐ Your Cars">
+        <option value="c180k">Mercedes C180K</option>
+        <option value="c200k">Mercedes C200K (2004)</option>
+        <option value="c220cdi">Mercedes C220CDI (2008)</option>
+        <option value="etios">Toyota Etios Sprint</option>
+        <option value="polo_vivo">VW Polo Vivo (2021)</option>
+        <option value="lc200">Toyota LC200 VX (2009)</option>
+      </optgroup>
+      <optgroup label="💰 Budget Hatchbacks">
+        <option value="kwid">Renault Kwid 1.0</option>
+        <option value="picanto">Kia Picanto 1.0 Street</option>
+        <option value="agya">Toyota Agya 1.0</option>
+        <option value="spresso">Suzuki S-Presso 1.0 GL</option>
+        <option value="swift">Suzuki Swift 1.2 GL</option>
+        <option value="datsun">Datsun Go 1.2</option>
+      </optgroup>
+      <optgroup label="🚗 Hatchbacks">
+        <option value="mazda2">Mazda2 1.5 Dynamic</option>
+        <option value="polo_tsi">VW Polo 1.0 TSI</option>
+        <option value="starlet">Toyota Starlet 1.5 Xs</option>
+        <option value="i20">Hyundai i20 1.2 Motion</option>
+        <option value="polo_gti">VW Polo GTI</option>
+      </optgroup>
+      <optgroup label="🚘 Sedans">
+        <option value="mazda3">Mazda3 1.5 Dynamic</option>
+        <option value="jetta">VW Jetta 1.4 TSI</option>
+        <option value="accent">Hyundai Accent 1.6</option>
+        <option value="elantra">Hyundai Elantra 1.6</option>
+        <option value="corolla">Toyota Corolla 1.8 Xs</option>
+        <option value="civic">Honda Civic 1.5T RS</option>
+      </optgroup>
+      <optgroup label="🚙 Crossover / Small SUV">
+        <option value="tcross">VW T-Cross 1.0 TSI</option>
+        <option value="venue">Hyundai Venue 1.0T Fluid</option>
+        <option value="urban_cruiser">Toyota Urban Cruiser 1.5 Xs</option>
+        <option value="corolla_cross">Toyota Corolla Cross 1.8 Xs</option>
+        <option value="qashqai">Nissan Qashqai 1.3T Acenta</option>
+        <option value="creta">Hyundai Creta 1.5 Executive</option>
+        <option value="seltos">Kia Seltos 1.5T EX</option>
+        <option value="jolion">Haval Jolion 1.5T</option>
+        <option value="rav4">Toyota RAV4 2.0 GX</option>
+        <option value="tiguan">VW Tiguan 1.4 TSI Life</option>
+      </optgroup>
+      <optgroup label="🏔 Large SUV">
+        <option value="fortuner24">Toyota Fortuner 2.4 GD-6</option>
+        <option value="everest">Ford Everest 2.0 BiT XLT</option>
+        <option value="mux">Isuzu MU-X 3.0 4x4</option>
+        <option value="fortuner28">Toyota Fortuner 2.8 GD-6 4x4</option>
+      </optgroup>
+      <optgroup label="🛻 Bakkies">
+        <option value="ranger_xl">Ford Ranger 2.0 SiT XL</option>
+        <option value="dmax">Isuzu D-Max 1.9 LS</option>
+        <option value="hilux24">Toyota Hilux 2.4 GD-6 SR</option>
+        <option value="gwm_p">GWM P-Series 2.0T</option>
+        <option value="ranger_xlt">Ford Ranger 2.0 BiT XLT</option>
+        <option value="navara">Nissan Navara 2.5 dCi</option>
+        <option value="hilux28">Toyota Hilux 2.8 GD-6</option>
+      </optgroup>
+      <optgroup label="💎 Premium">
+        <option value="a3">Audi A3 1.4 TFSI</option>
+        <option value="bmw520d">BMW 520d (G30)</option>
+        <option value="x3">BMW X3 xDrive20d</option>
+        <option value="glc">Mercedes GLC 220d</option>
+        <option value="bmw320i">BMW 320i (G20)</option>
+        <option value="c200_w206">Mercedes C200 (W206)</option>
+        <option value="a4">Audi A4 2.0 TFSI</option>
+        <option value="bmw330i">BMW 330i (G20)</option>
+        <option value="c300">Mercedes C300 (W206)</option>
+        <option value="q5">Audi Q5 2.0 TFSI</option>
+        <option value="xc60">Volvo XC60 T5</option>
+        <option value="fpace">Jaguar F-Pace P250</option>
+        <option value="rr_sport">Range Rover Sport D300</option>
+        <option value="defender">Land Rover Defender 110 D300</option>
+        <option value="cayenne">Porsche Cayenne</option>
+      </optgroup>
+      <optgroup label="🏁 Performance">
+        <option value="gti">VW Golf 8 GTI</option>
+        <option value="s3">Audi S3</option>
+        <option value="golf_r">VW Golf 8 R</option>
+        <option value="m340i">BMW M340i</option>
+        <option value="gr86">Toyota GR86</option>
+        <option value="gr_corolla">Toyota GR Corolla</option>
+        <option value="amg_a45">Mercedes AMG A45 S</option>
+        <option value="amg_c43">Mercedes AMG C43</option>
+        <option value="m3">BMW M3 (G80)</option>
+      </optgroup>
     </select></div>
     <div class="p">⚡ <select id="evS" onchange="calc()">
-      <option value="dolphin">Dolphin Surf Dynamic</option>
-      <option value="seal7">Seal 7 AWD Performance</option>
-      <option value="sl7c">Sealion 7 Comfort</option>
-      <option value="sl7e">Sealion 7 Excellence</option>
-      <option value="sl7p">Sealion 7 AWD Performance</option>
+      <option value="" selected disabled>Select EV…</option>
+      <optgroup label="🐬 Dolphin Surf">
+        <option value="dolph_c">Dolphin Surf Comfort</option>
+        <option value="dolph_d">Dolphin Surf Dynamic</option>
+      </optgroup>
+      <optgroup label="🔋 Atto 3">
+        <option value="atto_sr">Atto 3 Standard Range</option>
+        <option value="atto_er">Atto 3 Extended Range</option>
+      </optgroup>
+      <optgroup label="⚡ Seal">
+        <option value="seal_d">Seal Dynamic (RWD)</option>
+        <option value="seal_e">Seal Excellence (RWD)</option>
+        <option value="seal_p">Seal AWD Performance</option>
+      </optgroup>
+      <optgroup label="🚙 Seal 7">
+        <option value="seal7">Seal 7 AWD Performance</option>
+      </optgroup>
+      <optgroup label="🦁 Sealion 7">
+        <option value="sl7c">Sealion 7 Comfort (RWD)</option>
+        <option value="sl7e">Sealion 7 Excellence (RWD)</option>
+        <option value="sl7p">Sealion 7 AWD Performance</option>
+      </optgroup>
     </select></div>
     <div class="p">📍 <select id="kmS" onchange="calc()">
       <option value="200">200 km/mo</option><option value="400">400 km/mo</option>
@@ -243,7 +340,16 @@ body{
       <option value="5.50">R5.50/kWh</option>
       <option value="x">Custom</option>
     </select><input type="number" id="eskX" style="display:none" placeholder="R/kWh" step="0.1" min="0.5" max="15" oninput="calc()"></div>
-    <div class="p">☀️ Solar <span>R0/kWh</span></div>
+    <div class="p">☀️ Solar <select id="solS" onchange="hSol()">
+      <option value="2">2 kW (4 panels)</option>
+      <option value="3">3 kW (6 panels)</option>
+      <option value="4" selected>4 kW (8 panels)</option>
+      <option value="5">5 kW (10 panels)</option>
+      <option value="6">6 kW (12 panels)</option>
+      <option value="8">8 kW (16 panels)</option>
+      <option value="10">10 kW (20 panels)</option>
+      <option value="x">Custom</option>
+    </select><input type="number" id="solX" style="display:none" placeholder="kW" step="0.5" min="0.5" max="30" oninput="cc()"> <span style="color:#4acc80">R0/kWh</span></div>
     <div class="p">🛡 ICE <span id="pIns">R600</span></div>
     <div class="p">🛡 EV <span id="pEvIns">R1,000</span></div>
     <div class="p">🔧 <span id="pMnt">R500/mo</span></div>
@@ -266,27 +372,27 @@ body{
     </div>
     <div class="vc">
       <div class="vc-top">
-        <div><div class="vc-brand eb" id="eEB">BYD DOLPHIN</div><div class="vc-name" id="eEN">Surf Dynamic — Eskom</div></div>
-        <div class="vc-total et" id="eskT">R1,462</div>
+        <div><div class="vc-brand eb" id="eEB">—</div><div class="vc-name" id="eEN">Select an EV — Eskom</div></div>
+        <div class="vc-total et" id="eskT">—</div>
       </div>
       <div class="rows">
-        <div class="vr"><span class="vr-l">Consumption</span><span class="vr-v" id="eEC">13.2 kWh/100</span></div>
-        <div class="vr"><span class="vr-l">Energy used</span><span class="vr-v" id="eEU">132 kWh</span></div>
-        <div class="vr"><span class="vr-l">Energy cost</span><span class="vr-v" id="eEK">R462.00</span></div>
-        <div class="vr"><span class="vr-l">Insurance</span><span class="vr-v" id="eEI">R1,000</span></div>
+        <div class="vr"><span class="vr-l">Consumption</span><span class="vr-v" id="eEC">—</span></div>
+        <div class="vr"><span class="vr-l">Energy used</span><span class="vr-v" id="eEU">—</span></div>
+        <div class="vr"><span class="vr-l">Energy cost</span><span class="vr-v" id="eEK">—</span></div>
+        <div class="vr"><span class="vr-l">Insurance</span><span class="vr-v" id="eEI">—</span></div>
         <div class="vr"><span class="vr-l">Maintenance</span><span class="vr-v">R0</span></div>
       </div>
     </div>
     <div class="vc win">
       <div class="vc-top">
-        <div><div class="vc-brand sb" id="eSB">BYD DOLPHIN</div><div class="vc-name" id="eSN">Surf Dynamic — Solar</div></div>
-        <div class="vc-total st2" id="solT">R1,000</div>
+        <div><div class="vc-brand sb" id="eSB">—</div><div class="vc-name" id="eSN">Select an EV — Solar</div></div>
+        <div class="vc-total st2" id="solT">—</div>
       </div>
       <div class="rows">
-        <div class="vr"><span class="vr-l">Consumption</span><span class="vr-v" id="eSC">13.2 kWh/100</span></div>
-        <div class="vr"><span class="vr-l">Energy used</span><span class="vr-v" id="eSU">132 kWh</span></div>
+        <div class="vr"><span class="vr-l">Consumption</span><span class="vr-v" id="eSC">—</span></div>
+        <div class="vr"><span class="vr-l">Energy used</span><span class="vr-v" id="eSU">—</span></div>
         <div class="vr"><span class="vr-l">Energy cost</span><span class="vr-v">R0</span></div>
-        <div class="vr"><span class="vr-l">Insurance</span><span class="vr-v" id="eSI">R1,000</span></div>
+        <div class="vr"><span class="vr-l">Insurance</span><span class="vr-v" id="eSI">—</span></div>
         <div class="vr"><span class="vr-l">Maintenance</span><span class="vr-v">R0</span></div>
       </div>
     </div>
@@ -316,7 +422,7 @@ body{
 
   <div class="st" id="ctT">Dolphin Surf — Charge Time Calculator</div>
   <div class="ctrls">
-    <div class="p">🚗 <select id="ctD" onchange="cc()">
+    <div class="p">🚗 <select id="ctD" onchange="hDist()">
       <option value="20">20 km</option><option value="40">40 km</option>
       <option value="60">60 km</option><option value="80">80 km</option>
       <option value="100">100 km</option><option value="120">120 km</option>
@@ -325,7 +431,8 @@ body{
       <option value="250">250 km</option><option value="300">300 km</option>
       <option value="350">350 km</option><option value="400">400 km</option>
       <option value="450">450 km</option><option value="500">500 km</option>
-    </select></div>
+      <option value="x">Custom</option>
+    </select><input type="number" id="ctDX" style="display:none" placeholder="km" step="1" min="1" max="600" oninput="cc()"></div>
     <div class="p">Energy: <span id="ctE">2.64 kWh</span></div>
   </div>
 
@@ -356,15 +463,14 @@ body{
       </tr></thead>
       <tbody>
         <tr><td>10A</td><td>2.3</td><td class="ec" id="ce10"></td><td class="ec" id="cc10"></td><td class="sc" id="cs10"></td><td class="sc">R0</td><td style="color:#e8866a" id="cf10"></td></tr>
-        <tr><td>15A</td><td>3.45</td><td class="ec" id="ce15"></td><td class="ec" id="cc15"></td><td class="sc" id="cs15"></td><td class="sc">R0</td><td style="color:#e8866a" id="cf15"></td></tr>
+        <tr><td>16A</td><td>3.68</td><td class="ec" id="ce15"></td><td class="ec" id="cc15"></td><td class="sc" id="cs15"></td><td class="sc">R0</td><td style="color:#e8866a" id="cf15"></td></tr>
         <tr><td>32A</td><td>7.36</td><td class="ec" id="ce32"></td><td class="ec" id="cc32"></td><td class="sc" id="cs32"></td><td class="sc">R0</td><td style="color:#e8866a" id="cf32"></td></tr>
       </tbody>
     </table>
   </div>
 
-  <div class="info">
-    ☀️ <strong>Solar:</strong> 8×550W = 4.4kW peak · 5.5h sun/day · 80% eff → <strong style="color:#4acc80">~19.4 kWh/day</strong>.
-    32A draws 7.36kW &gt; solar. <strong style="color:#c0794a">Capped at 4.0kW</strong> for real-world losses.
+  <div class="info" id="solInfo">
+    ☀️ <strong>Solar:</strong> System output capped at usable inverter capacity. Solar charge time assumes direct solar-to-car charging at <strong style="color:#4acc80">R0/kWh</strong>. If charger draw exceeds solar output, charge rate is capped to solar capacity.
   </div>
 
   <div class="foot">
@@ -375,16 +481,98 @@ body{
 
 <script>
 var ICE={
+  // ⭐ Your Cars
   c180k:{b:'Mercedes',n:'C180K',s:'Mercedes C180K',c:11.5,u:'L',ins:600,m:500},
   c200k:{b:'Mercedes',n:'C200K (2004)',s:'Mercedes C200K',c:11.0,u:'L',ins:600,m:500},
   c220cdi:{b:'Mercedes',n:'C220CDI (2008)',s:'Mercedes C220CDI',c:7.5,u:'L',ins:600,m:500},
   etios:{b:'Toyota',n:'Etios Sprint',s:'Toyota Etios Sprint',c:7.5,u:'L',ins:600,m:400},
-  polo:{b:'Volkswagen',n:'Polo Vivo (2021)',s:'VW Polo Vivo',c:6.8,u:'L',ins:600,m:350},
-  lc200:{b:'Toyota',n:'LC200 VX (2009)',s:'Toyota LC200',c:16.5,u:'L',ins:1200,m:800}
+  polo_vivo:{b:'Volkswagen',n:'Polo Vivo (2021)',s:'VW Polo Vivo',c:6.8,u:'L',ins:600,m:350},
+  lc200:{b:'Toyota',n:'LC200 VX (2009)',s:'Toyota LC200',c:16.5,u:'L',ins:1200,m:800},
+  // Budget Hatchbacks
+  kwid:{b:'Renault',n:'Kwid 1.0',s:'Renault Kwid',c:4.7,u:'L',ins:380,m:220},
+  picanto:{b:'Kia',n:'Picanto 1.0 Street',s:'Kia Picanto',c:4.7,u:'L',ins:400,m:230},
+  agya:{b:'Toyota',n:'Agya 1.0',s:'Toyota Agya',c:4.8,u:'L',ins:400,m:230},
+  spresso:{b:'Suzuki',n:'S-Presso 1.0 GL',s:'Suzuki S-Presso',c:4.9,u:'L',ins:380,m:220},
+  swift:{b:'Suzuki',n:'Swift 1.2 GL',s:'Suzuki Swift',c:5.0,u:'L',ins:450,m:250},
+  datsun:{b:'Datsun',n:'Go 1.2',s:'Datsun Go',c:5.2,u:'L',ins:350,m:220},
+  // Hatchbacks
+  starlet:{b:'Toyota',n:'Starlet 1.5 Xs',s:'Toyota Starlet',c:5.8,u:'L',ins:480,m:270},
+  mazda2:{b:'Mazda',n:'2 1.5 Dynamic',s:'Mazda2',c:5.4,u:'L',ins:500,m:280},
+  polo_tsi:{b:'Volkswagen',n:'Polo 1.0 TSI',s:'VW Polo TSI',c:5.5,u:'L',ins:550,m:300},
+  i20:{b:'Hyundai',n:'i20 1.2 Motion',s:'Hyundai i20',c:5.8,u:'L',ins:500,m:280},
+  polo_gti:{b:'Volkswagen',n:'Polo GTI',s:'VW Polo GTI',c:6.5,u:'L',ins:700,m:400},
+  // Sedans
+  mazda3:{b:'Mazda',n:'3 1.5 Dynamic',s:'Mazda3',c:5.8,u:'L',ins:600,m:320},
+  jetta:{b:'Volkswagen',n:'Jetta 1.4 TSI',s:'VW Jetta',c:6.0,u:'L',ins:600,m:350},
+  accent:{b:'Hyundai',n:'Accent 1.6',s:'Hyundai Accent',c:6.2,u:'L',ins:500,m:300},
+  elantra:{b:'Hyundai',n:'Elantra 1.6',s:'Hyundai Elantra',c:6.5,u:'L',ins:580,m:320},
+  corolla:{b:'Toyota',n:'Corolla 1.8 Xs',s:'Toyota Corolla',c:6.5,u:'L',ins:650,m:350},
+  civic:{b:'Honda',n:'Civic 1.5T RS',s:'Honda Civic RS',c:6.8,u:'L',ins:750,m:400},
+  // Crossover / Small SUV
+  tcross:{b:'Volkswagen',n:'T-Cross 1.0 TSI',s:'VW T-Cross',c:5.8,u:'L',ins:550,m:320},
+  venue:{b:'Hyundai',n:'Venue 1.0T Fluid',s:'Hyundai Venue',c:6.0,u:'L',ins:550,m:300},
+  urban_cruiser:{b:'Toyota',n:'Urban Cruiser 1.5 Xs',s:'Toyota Urban Cruiser',c:6.2,u:'L',ins:560,m:320},
+  qashqai:{b:'Nissan',n:'Qashqai 1.3T Acenta',s:'Nissan Qashqai',c:6.8,u:'L',ins:650,m:380},
+  corolla_cross:{b:'Toyota',n:'Corolla Cross 1.8 Xs',s:'Toyota Corolla Cross',c:6.8,u:'L',ins:650,m:350},
+  creta:{b:'Hyundai',n:'Creta 1.5 Executive',s:'Hyundai Creta',c:7.0,u:'L',ins:600,m:350},
+  seltos:{b:'Kia',n:'Seltos 1.5T EX',s:'Kia Seltos',c:7.0,u:'L',ins:600,m:350},
+  jolion:{b:'Haval',n:'Jolion 1.5T',s:'Haval Jolion',c:7.2,u:'L',ins:550,m:320},
+  tiguan:{b:'Volkswagen',n:'Tiguan 1.4 TSI Life',s:'VW Tiguan',c:7.5,u:'L',ins:800,m:450},
+  rav4:{b:'Toyota',n:'RAV4 2.0 GX',s:'Toyota RAV4',c:7.5,u:'L',ins:750,m:400},
+  // Large SUV
+  fortuner24:{b:'Toyota',n:'Fortuner 2.4 GD-6',s:'Toyota Fortuner 2.4',c:8.5,u:'L',ins:900,m:500},
+  fortuner28:{b:'Toyota',n:'Fortuner 2.8 GD-6 4x4',s:'Toyota Fortuner 2.8',c:9.5,u:'L',ins:1000,m:550},
+  everest:{b:'Ford',n:'Everest 2.0 BiT XLT',s:'Ford Everest',c:8.5,u:'L',ins:950,m:520},
+  mux:{b:'Isuzu',n:'MU-X 3.0 4x4',s:'Isuzu MU-X',c:9.0,u:'L',ins:950,m:520},
+  // Bakkies
+  ranger_xl:{b:'Ford',n:'Ranger 2.0 SiT XL',s:'Ford Ranger XL',c:7.2,u:'L',ins:750,m:450},
+  ranger_xlt:{b:'Ford',n:'Ranger 2.0 BiT XLT',s:'Ford Ranger XLT',c:8.0,u:'L',ins:850,m:500},
+  hilux24:{b:'Toyota',n:'Hilux 2.4 GD-6 SR',s:'Toyota Hilux 2.4',c:7.8,u:'L',ins:800,m:480},
+  hilux28:{b:'Toyota',n:'Hilux 2.8 GD-6',s:'Toyota Hilux 2.8',c:8.5,u:'L',ins:900,m:500},
+  dmax:{b:'Isuzu',n:'D-Max 1.9 LS',s:'Isuzu D-Max',c:7.5,u:'L',ins:750,m:450},
+  navara:{b:'Nissan',n:'Navara 2.5 dCi',s:'Nissan Navara',c:8.5,u:'L',ins:800,m:480},
+  gwm_p:{b:'GWM',n:'P-Series 2.0T',s:'GWM P-Series',c:8.0,u:'L',ins:650,m:400},
+  // Premium
+  a3:{b:'Audi',n:'A3 1.4 TFSI',s:'Audi A3',c:5.8,u:'L',ins:800,m:550},
+  bmw320i:{b:'BMW',n:'320i (G20)',s:'BMW 320i',c:7.0,u:'L',ins:900,m:600},
+  c200_w206:{b:'Mercedes',n:'C200 (W206)',s:'Mercedes C200',c:7.0,u:'L',ins:900,m:600},
+  a4:{b:'Audi',n:'A4 2.0 TFSI',s:'Audi A4',c:7.2,u:'L',ins:950,m:650},
+  bmw330i:{b:'BMW',n:'330i (G20)',s:'BMW 330i',c:7.5,u:'L',ins:1000,m:650},
+  c300:{b:'Mercedes',n:'C300 (W206)',s:'Mercedes C300',c:7.8,u:'L',ins:1000,m:650},
+  bmw520d:{b:'BMW',n:'520d (G30)',s:'BMW 520d',c:5.8,u:'L',ins:1050,m:700},
+  x3:{b:'BMW',n:'X3 xDrive20d',s:'BMW X3 20d',c:6.5,u:'L',ins:1100,m:700},
+  glc:{b:'Mercedes',n:'GLC 220d',s:'Mercedes GLC',c:6.8,u:'L',ins:1100,m:700},
+  q5:{b:'Audi',n:'Q5 2.0 TFSI',s:'Audi Q5',c:8.0,u:'L',ins:1100,m:700},
+  xc60:{b:'Volvo',n:'XC60 T5',s:'Volvo XC60',c:8.2,u:'L',ins:1050,m:680},
+  fpace:{b:'Jaguar',n:'F-Pace P250',s:'Jaguar F-Pace',c:8.8,u:'L',ins:1200,m:800},
+  rr_sport:{b:'Range Rover',n:'Sport D300',s:'RR Sport D300',c:8.5,u:'L',ins:1500,m:900},
+  defender:{b:'Land Rover',n:'Defender 110 D300',s:'LR Defender',c:9.5,u:'L',ins:1500,m:900},
+  cayenne:{b:'Porsche',n:'Cayenne',s:'Porsche Cayenne',c:11.5,u:'L',ins:1800,m:1000},
+  // Performance
+  gti:{b:'Volkswagen',n:'Golf 8 GTI',s:'VW Golf GTI',c:7.5,u:'L',ins:900,m:500},
+  s3:{b:'Audi',n:'S3',s:'Audi S3',c:7.8,u:'L',ins:1000,m:600},
+  golf_r:{b:'Volkswagen',n:'Golf 8 R',s:'VW Golf R',c:8.0,u:'L',ins:1000,m:550},
+  m340i:{b:'BMW',n:'M340i',s:'BMW M340i',c:8.5,u:'L',ins:1200,m:700},
+  gr86:{b:'Toyota',n:'GR86',s:'Toyota GR86',c:8.5,u:'L',ins:800,m:450},
+  gr_corolla:{b:'Toyota',n:'GR Corolla',s:'Toyota GR Corolla',c:8.8,u:'L',ins:900,m:500},
+  amg_a45:{b:'Mercedes',n:'AMG A45 S',s:'Mercedes AMG A45 S',c:9.0,u:'L',ins:1300,m:750},
+  amg_c43:{b:'Mercedes',n:'AMG C43',s:'Mercedes AMG C43',c:9.5,u:'L',ins:1300,m:750},
+  m3:{b:'BMW',n:'M3 (G80)',s:'BMW M3',c:10.0,u:'L',ins:1500,m:850}
 };
 var EV={
-  dolphin:{b:'BYD Dolphin',n:'Surf Dynamic',s:'Dolphin Surf',f:'BYD Dolphin Surf Dynamic',c:13.2,bat:38.88,rng:295,ins:1000,p:350000},
+  // --- Dolphin Surf ---
+  dolph_c:{b:'BYD Dolphin',n:'Surf Comfort',s:'Dolphin Comfort',f:'BYD Dolphin Surf Comfort',c:13.0,bat:30.08,rng:232,ins:1000,p:295000},
+  dolph_d:{b:'BYD Dolphin',n:'Surf Dynamic',s:'Dolphin Dynamic',f:'BYD Dolphin Surf Dynamic',c:13.2,bat:38.88,rng:300,ins:1000,p:350000},
+  // --- Atto 3 ---
+  atto_sr:{b:'BYD Atto 3',n:'Standard Range',s:'Atto 3 SR',f:'BYD Atto 3 Standard Range',c:14.5,bat:49.92,rng:345,ins:1000,p:620000},
+  atto_er:{b:'BYD Atto 3',n:'Extended Range',s:'Atto 3 ER',f:'BYD Atto 3 Extended Range',c:14.4,bat:60.48,rng:420,ins:1000,p:700000},
+  // --- Seal ---
+  seal_d:{b:'BYD Seal',n:'Dynamic (RWD)',s:'Seal Dynamic',f:'BYD Seal Dynamic',c:13.4,bat:61.44,rng:460,ins:1000,p:750000},
+  seal_e:{b:'BYD Seal',n:'Excellence (RWD)',s:'Seal Excellence',f:'BYD Seal Excellence',c:14.5,bat:82.56,rng:570,ins:1000,p:850000},
+  seal_p:{b:'BYD Seal',n:'AWD Performance',s:'Seal AWD',f:'BYD Seal AWD Performance',c:15.9,bat:82.56,rng:520,ins:1000,p:950000},
+  // --- Seal 7 ---
   seal7:{b:'BYD Seal 7',n:'AWD Performance',s:'Seal 7 AWD',f:'BYD Seal 7 AWD Performance',c:18,bat:77,rng:520,ins:2000,p:880000},
+  // --- Sealion 7 ---
   sl7c:{b:'BYD Sealion 7',n:'Comfort (RWD)',s:'Sealion 7 Comfort',f:'BYD Sealion 7 Comfort',c:14.9,bat:71.8,rng:482,ins:2000,p:850000},
   sl7e:{b:'BYD Sealion 7',n:'Excellence (RWD)',s:'Sealion 7 Excellence',f:'BYD Sealion 7 Excellence',c:16.1,bat:91.3,rng:567,ins:2000,p:950000},
   sl7p:{b:'BYD Sealion 7',n:'AWD Performance',s:'Sealion 7 AWD',f:'BYD Sealion 7 AWD Performance',c:16.8,bat:91.3,rng:542,ins:2000,p:1050000}
@@ -398,10 +586,22 @@ function gFuel(){var s=g('fuelS');return s.value==='x'?(parseFloat(g('fuelX').va
 function gEsk(){var s=g('eskS');return s.value==='x'?(parseFloat(g('eskX').value)||3.5):parseFloat(s.value)}
 function hFuel(){var s=g('fuelS'),x=g('fuelX');x.style.display=s.value==='x'?'inline-block':'none';if(s.value==='x')x.focus();calc()}
 function hEsk(){var s=g('eskS'),x=g('eskX');x.style.display=s.value==='x'?'inline-block':'none';if(s.value==='x')x.focus();calc()}
+function hDist(){var s=g('ctD'),x=g('ctDX');x.style.display=s.value==='x'?'inline-block':'none';if(s.value==='x')x.focus();cc()}
+function gDist(){var s=g('ctD');return s.value==='x'?(parseFloat(g('ctDX').value)||20):parseFloat(s.value)}
+function hSol(){var s=g('solS'),x=g('solX');x.style.display=s.value==='x'?'inline-block':'none';if(s.value==='x')x.focus();cc()}
+function gSol(){var s=g('solS');return s.value==='x'?(parseFloat(g('solX').value)||4):parseFloat(s.value)}
 
 function calc(){
   var iceKey=g('iceS').value;
-  var e=EV[g('evS').value];
+  var evKey=g('evS').value;
+
+  // EV updates
+  if(!evKey){
+    g('hEv').textContent='Select EV';
+    if(!iceKey) g('hIce').textContent='Your Car';
+    return;
+  }
+  var e=EV[evKey];
   var fuel=gFuel(),esk=gEsk(),km=parseFloat(g('kmS').value);
   var kWh=km*e.c/100;
   var eE=kWh*esk,eM=eE+e.ins,sM=e.ins;
@@ -472,13 +672,16 @@ function calc(){
 
 function cc(){
   var iceKey=g('iceS').value;
-  var e=EV[g('evS').value];
+  var evKey=g('evS').value;
+  if(!evKey) return;
+  var e=EV[evKey];
   var v=iceKey?ICE[iceKey]:null;
-  var d=parseFloat(g('ctD').value),esk=gEsk(),fl=gFuel();
+  var d=gDist(),esk=gEsk(),fl=gFuel();
   var en=d*e.c/100;
   var lit=v?(d*v.c/100):0;
-  var ePow={10:2.3,15:3.45,32:7.36},sCap=4.0;
-  var sPow={10:Math.min(2.3,sCap),15:Math.min(3.45,sCap),32:sCap};
+  var ePow={10:2.3,15:3.68,32:7.36};
+  var sCap=gSol();
+  var sPow={10:Math.min(2.3,sCap),15:Math.min(3.68,sCap),32:Math.min(7.36,sCap)};
   var eCost=en*esk,fCost=lit*fl;
   var rem=Math.max(e.bat-en,0),pct=(rem/e.bat*100).toFixed(1),rng=Math.max(Math.round(rem/e.c*100),0);
 
@@ -502,6 +705,17 @@ function cc(){
     g('cc'+a).textContent='R'+eCost.toFixed(2);
     g('cf'+a).textContent=v?('R'+fCost.toFixed(2)):'—';
   }
+
+  // Update solar info
+  var dailyGen=(sCap*5.5*0.8).toFixed(1);
+  var notes=[];
+  if(ePow[10]>sCap) notes.push('10A (2.3kW)');
+  if(ePow[15]>sCap) notes.push('16A (3.68kW)');
+  if(ePow[32]>sCap) notes.push('32A (7.36kW)');
+  var capMsg=notes.length>0?
+    ' <strong style="color:#c0794a">'+notes.join(', ')+' capped to '+sCap+'kW</strong> (exceeds solar output).':
+    ' <strong style="color:#4acc80">All chargers within solar capacity.</strong>';
+  g('solInfo').innerHTML='☀️ <strong>Solar:</strong> '+sCap+'kW system · 5.5h sun/day · 80% eff → <strong style="color:#4acc80">~'+dailyGen+' kWh/day</strong> generation.'+capMsg;
 }
 
 window.onload=function(){
