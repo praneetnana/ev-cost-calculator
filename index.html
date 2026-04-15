@@ -296,26 +296,64 @@ body{
     </select></div>
     <div class="p">⚡ <select id="evS" onchange="calc()">
       <option value="" selected disabled>Select EV…</option>
-      <optgroup label="🐬 Dolphin Surf">
+      <optgroup label="🐬 BYD Dolphin Surf">
         <option value="dolph_c">Dolphin Surf Comfort</option>
         <option value="dolph_d">Dolphin Surf Dynamic</option>
       </optgroup>
-      <optgroup label="🔋 Atto 3">
+      <optgroup label="🔋 BYD Atto 3">
         <option value="atto_sr">Atto 3 Standard Range</option>
         <option value="atto_er">Atto 3 Extended Range</option>
       </optgroup>
-      <optgroup label="⚡ Seal">
+      <optgroup label="⚡ BYD Seal">
         <option value="seal_d">Seal Dynamic (RWD)</option>
         <option value="seal_e">Seal Excellence (RWD)</option>
         <option value="seal_p">Seal AWD Performance</option>
       </optgroup>
-      <optgroup label="🚙 Seal 7">
+      <optgroup label="🚙 BYD Seal 7">
         <option value="seal7">Seal 7 AWD Performance</option>
       </optgroup>
-      <optgroup label="🦁 Sealion 7">
+      <optgroup label="🦁 BYD Sealion 7">
         <option value="sl7c">Sealion 7 Comfort (RWD)</option>
         <option value="sl7e">Sealion 7 Excellence (RWD)</option>
         <option value="sl7p">Sealion 7 AWD Performance</option>
+      </optgroup>
+      <optgroup label="🏎 BMW">
+        <option value="ix1">iX1 xDrive30</option>
+        <option value="i4_40">i4 eDrive40</option>
+        <option value="i4_m50">i4 M50</option>
+        <option value="ix3">iX3</option>
+        <option value="i5">i5 eDrive40</option>
+        <option value="ix_40">iX xDrive40</option>
+        <option value="ix_50">iX xDrive50</option>
+        <option value="i7">i7 xDrive60</option>
+      </optgroup>
+      <optgroup label="⭐ Mercedes EQ">
+        <option value="eqa">EQA 250+</option>
+        <option value="eqb">EQB 250+</option>
+        <option value="eqe">EQE 350+</option>
+        <option value="eqs">EQS 450+</option>
+      </optgroup>
+      <optgroup label="🇸🇪 Volvo">
+        <option value="ex30_s">EX30 Single Motor</option>
+        <option value="ex30_t">EX30 Twin Motor</option>
+        <option value="ex40">EX40 Recharge</option>
+        <option value="ec40">EC40 Recharge</option>
+      </optgroup>
+      <optgroup label="🇬🇧 MINI">
+        <option value="mini_se">Cooper SE</option>
+        <option value="mini_cx">Countryman SE ALL4</option>
+      </optgroup>
+      <optgroup label="🏁 Porsche">
+        <option value="taycan">Taycan</option>
+        <option value="taycan_4s">Taycan 4S</option>
+        <option value="macan_e">Macan Electric</option>
+      </optgroup>
+      <optgroup label="💎 Audi">
+        <option value="q4">Q4 e-tron 40</option>
+        <option value="q8e">Q8 e-tron 55</option>
+      </optgroup>
+      <optgroup label="🔧 GWM">
+        <option value="ora03">Ora 03</option>
       </optgroup>
     </select></div>
     <div class="p">📍 <select id="kmS" onchange="calc()">
@@ -562,22 +600,53 @@ var ICE={
   m3:{b:'BMW',n:'M3 (G80)',s:'BMW M3',c:10.0,u:'L',ins:1500,m:850}
 };
 var EV={
-  // --- Dolphin Surf ---
+  // BYD Dolphin Surf
   dolph_c:{b:'BYD Dolphin',n:'Surf Comfort',s:'Dolphin Comfort',f:'BYD Dolphin Surf Comfort',c:13.0,bat:30.08,rng:232,ins:1000,p:295000},
   dolph_d:{b:'BYD Dolphin',n:'Surf Dynamic',s:'Dolphin Dynamic',f:'BYD Dolphin Surf Dynamic',c:13.2,bat:38.88,rng:300,ins:1000,p:350000},
-  // --- Atto 3 ---
+  // BYD Atto 3
   atto_sr:{b:'BYD Atto 3',n:'Standard Range',s:'Atto 3 SR',f:'BYD Atto 3 Standard Range',c:14.5,bat:49.92,rng:345,ins:1000,p:620000},
   atto_er:{b:'BYD Atto 3',n:'Extended Range',s:'Atto 3 ER',f:'BYD Atto 3 Extended Range',c:14.4,bat:60.48,rng:420,ins:1000,p:700000},
-  // --- Seal ---
+  // BYD Seal
   seal_d:{b:'BYD Seal',n:'Dynamic (RWD)',s:'Seal Dynamic',f:'BYD Seal Dynamic',c:13.4,bat:61.44,rng:460,ins:1000,p:750000},
   seal_e:{b:'BYD Seal',n:'Excellence (RWD)',s:'Seal Excellence',f:'BYD Seal Excellence',c:14.5,bat:82.56,rng:570,ins:1000,p:850000},
   seal_p:{b:'BYD Seal',n:'AWD Performance',s:'Seal AWD',f:'BYD Seal AWD Performance',c:15.9,bat:82.56,rng:520,ins:1000,p:950000},
-  // --- Seal 7 ---
+  // BYD Seal 7
   seal7:{b:'BYD Seal 7',n:'AWD Performance',s:'Seal 7 AWD',f:'BYD Seal 7 AWD Performance',c:18,bat:77,rng:520,ins:2000,p:880000},
-  // --- Sealion 7 ---
+  // BYD Sealion 7
   sl7c:{b:'BYD Sealion 7',n:'Comfort (RWD)',s:'Sealion 7 Comfort',f:'BYD Sealion 7 Comfort',c:14.9,bat:71.8,rng:482,ins:2000,p:850000},
   sl7e:{b:'BYD Sealion 7',n:'Excellence (RWD)',s:'Sealion 7 Excellence',f:'BYD Sealion 7 Excellence',c:16.1,bat:91.3,rng:567,ins:2000,p:950000},
-  sl7p:{b:'BYD Sealion 7',n:'AWD Performance',s:'Sealion 7 AWD',f:'BYD Sealion 7 AWD Performance',c:16.8,bat:91.3,rng:542,ins:2000,p:1050000}
+  sl7p:{b:'BYD Sealion 7',n:'AWD Performance',s:'Sealion 7 AWD',f:'BYD Sealion 7 AWD Performance',c:16.8,bat:91.3,rng:542,ins:2000,p:1050000},
+  // BMW
+  ix1:{b:'BMW',n:'iX1 xDrive30',s:'BMW iX1',f:'BMW iX1 xDrive30',c:14.7,bat:64.7,rng:440,ins:1800,p:950000},
+  i4_40:{b:'BMW',n:'i4 eDrive40',s:'BMW i4 40',f:'BMW i4 eDrive40',c:14.2,bat:83.9,rng:590,ins:2000,p:1100000},
+  i4_m50:{b:'BMW',n:'i4 M50',s:'BMW i4 M50',f:'BMW i4 M50',c:16.1,bat:83.9,rng:520,ins:2500,p:1400000},
+  ix3:{b:'BMW',n:'iX3',s:'BMW iX3',f:'BMW iX3',c:17.4,bat:80,rng:460,ins:2200,p:1150000},
+  i5:{b:'BMW',n:'i5 eDrive40',s:'BMW i5',f:'BMW i5 eDrive40',c:14.5,bat:83.9,rng:580,ins:2500,p:1350000},
+  ix_40:{b:'BMW',n:'iX xDrive40',s:'BMW iX 40',f:'BMW iX xDrive40',c:18.0,bat:76.6,rng:425,ins:2800,p:1500000},
+  ix_50:{b:'BMW',n:'iX xDrive50',s:'BMW iX 50',f:'BMW iX xDrive50',c:17.7,bat:111.5,rng:630,ins:3200,p:1900000},
+  i7:{b:'BMW',n:'i7 xDrive60',s:'BMW i7',f:'BMW i7 xDrive60',c:17.2,bat:101.7,rng:590,ins:4500,p:2800000},
+  // Mercedes EQ
+  eqa:{b:'Mercedes',n:'EQA 250+',s:'Mercedes EQA',f:'Mercedes EQA 250+',c:13.4,bat:70.5,rng:528,ins:1800,p:950000},
+  eqb:{b:'Mercedes',n:'EQB 250+',s:'Mercedes EQB',f:'Mercedes EQB 250+',c:14.9,bat:70.5,rng:474,ins:2000,p:1050000},
+  eqe:{b:'Mercedes',n:'EQE 350+',s:'Mercedes EQE',f:'Mercedes EQE 350+',c:14.7,bat:96,rng:654,ins:2800,p:1600000},
+  eqs:{b:'Mercedes',n:'EQS 450+',s:'Mercedes EQS',f:'Mercedes EQS 450+',c:14.1,bat:108.4,rng:770,ins:4000,p:2500000},
+  // Volvo
+  ex30_s:{b:'Volvo',n:'EX30 Single Motor',s:'Volvo EX30 SM',f:'Volvo EX30 Single Motor',c:14.8,bat:51,rng:344,ins:1400,p:700000},
+  ex30_t:{b:'Volvo',n:'EX30 Twin Motor',s:'Volvo EX30 TM',f:'Volvo EX30 Twin Motor',c:15.0,bat:69,rng:460,ins:1600,p:850000},
+  ex40:{b:'Volvo',n:'EX40 Recharge',s:'Volvo EX40',f:'Volvo EX40 Recharge',c:16.6,bat:79,rng:476,ins:1800,p:1000000},
+  ec40:{b:'Volvo',n:'EC40 Recharge',s:'Volvo EC40',f:'Volvo EC40 Recharge',c:15.6,bat:79,rng:507,ins:1900,p:1050000},
+  // MINI
+  mini_se:{b:'MINI',n:'Cooper SE',s:'MINI Cooper SE',f:'MINI Cooper SE',c:13.5,bat:54.2,rng:402,ins:1500,p:750000},
+  mini_cx:{b:'MINI',n:'Countryman SE ALL4',s:'MINI Countryman SE',f:'MINI Countryman SE ALL4',c:15.4,bat:66.5,rng:433,ins:1700,p:900000},
+  // Porsche
+  taycan:{b:'Porsche',n:'Taycan',s:'Porsche Taycan',f:'Porsche Taycan',c:19.3,bat:93.4,rng:484,ins:3500,p:2200000},
+  taycan_4s:{b:'Porsche',n:'Taycan 4S',s:'Porsche Taycan 4S',f:'Porsche Taycan 4S',c:20.1,bat:93.4,rng:464,ins:4000,p:2500000},
+  macan_e:{b:'Porsche',n:'Macan Electric',s:'Porsche Macan EV',f:'Porsche Macan Electric',c:16.3,bat:100,rng:613,ins:3000,p:1800000},
+  // Audi
+  q4:{b:'Audi',n:'Q4 e-tron 40',s:'Audi Q4 e-tron',f:'Audi Q4 e-tron 40',c:14.8,bat:77,rng:520,ins:2000,p:1050000},
+  q8e:{b:'Audi',n:'Q8 e-tron 55',s:'Audi Q8 e-tron',f:'Audi Q8 e-tron 55',c:19.6,bat:114,rng:582,ins:3000,p:1800000},
+  // GWM
+  ora03:{b:'GWM',n:'Ora 03',s:'GWM Ora 03',f:'GWM Ora 03',c:15.5,bat:48,rng:310,ins:800,p:450000}
 };
 
 function g(id){return document.getElementById(id)}
