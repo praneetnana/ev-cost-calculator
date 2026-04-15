@@ -213,6 +213,7 @@ body{
         <option value="etios">Toyota Etios Sprint</option>
         <option value="polo_vivo">VW Polo Vivo (2021)</option>
         <option value="lc200">Toyota LC200 VX (2009)</option>
+        <option value="pajero_jr">Mitsubishi Pajero Junior (1997)</option>
       </optgroup>
       <optgroup label="💰 Budget Hatchbacks">
         <option value="kwid">Renault Kwid 1.0</option>
@@ -401,13 +402,13 @@ body{
   <div class="st">3-Year Cumulative (36 months)</div>
   <div class="tw">
     <table class="tb">
-      <thead><tr><th>Cost Item</th><th id="th1">Mercedes C180K</th><th id="th2">Dolphin (Eskom)</th><th id="th3">Dolphin (Solar)</th></tr></thead>
+      <thead><tr><th>Cost Item</th><th id="th1">—</th><th id="th2">—</th><th id="th3">—</th></tr></thead>
       <tbody>
         <tr><td>Fuel / Energy</td><td class="mv" id="t1f"></td><td class="ev2" id="t2f"></td><td class="sv">R0</td></tr>
         <tr><td>Insurance</td><td class="mv" id="t1i"></td><td class="ev2" id="t2i"></td><td class="sv" id="t3i"></td></tr>
         <tr><td>Maintenance</td><td class="mv" id="t1m"></td><td>—</td><td>—</td></tr>
         <tr class="tot"><td>3-Year Total</td><td class="mv" id="t1t"></td><td class="ev2" id="t2t"></td><td class="sv" id="t3t"></td></tr>
-        <tr class="sav"><td class="sav-l" id="sv1">Saving vs Mercedes C180K</td><td>—</td><td class="ev2" id="s2"></td><td class="sv" id="s3"></td></tr>
+        <tr class="sav"><td class="sav-l" id="sv1">Saving vs —</td><td>—</td><td class="ev2" id="s2"></td><td class="sv" id="s3"></td></tr>
         <tr class="sav"><td class="sav-l" id="sv2">Annual saving</td><td>—</td><td class="ev2" id="a2"></td><td class="sv" id="a3"></td></tr>
       </tbody>
     </table>
@@ -415,12 +416,12 @@ body{
 
   <div class="st">3-Year Running Cost</div>
   <div class="bars">
-    <div class="br"><div class="br-l" id="bl1">Mercedes C180K</div><div class="br-t"><div class="br-f" id="b1" style="width:100%;background:linear-gradient(90deg,#c0402a,#e8866a)"><span id="bv1"></span></div></div></div>
-    <div class="br"><div class="br-l" id="bl2">Dolphin — Eskom</div><div class="br-t"><div class="br-f" id="b2" style="width:40%;background:linear-gradient(90deg,#1a60c0,#6aabee)"><span id="bv2"></span></div></div></div>
-    <div class="br"><div class="br-l" id="bl3">Dolphin — Solar</div><div class="br-t"><div class="br-f" id="b3" style="width:28%;background:linear-gradient(90deg,#0e7a3c,#4acc80)"><span id="bv3"></span></div></div></div>
+    <div class="br"><div class="br-l" id="bl1">—</div><div class="br-t"><div class="br-f" id="b1" style="width:0%;background:linear-gradient(90deg,#c0402a,#e8866a)"><span id="bv1"></span></div></div></div>
+    <div class="br"><div class="br-l" id="bl2">—</div><div class="br-t"><div class="br-f" id="b2" style="width:0%;background:linear-gradient(90deg,#1a60c0,#6aabee)"><span id="bv2"></span></div></div></div>
+    <div class="br"><div class="br-l" id="bl3">—</div><div class="br-t"><div class="br-f" id="b3" style="width:0%;background:linear-gradient(90deg,#0e7a3c,#4acc80)"><span id="bv3"></span></div></div></div>
   </div>
 
-  <div class="st" id="ctT">Dolphin Surf — Charge Time Calculator</div>
+  <div class="st" id="ctT">Charge Time Calculator</div>
   <div class="ctrls">
     <div class="p">🚗 <select id="ctD" onchange="hDist()">
       <option value="20">20 km</option><option value="40">40 km</option>
@@ -488,6 +489,7 @@ var ICE={
   etios:{b:'Toyota',n:'Etios Sprint',s:'Toyota Etios Sprint',c:7.5,u:'L',ins:600,m:400},
   polo_vivo:{b:'Volkswagen',n:'Polo Vivo (2021)',s:'VW Polo Vivo',c:6.8,u:'L',ins:600,m:350},
   lc200:{b:'Toyota',n:'LC200 VX (2009)',s:'Toyota LC200',c:16.5,u:'L',ins:1200,m:800},
+  pajero_jr:{b:'Mitsubishi',n:'Pajero Junior 1.1 (1997)',s:'Mitsubishi Pajero Jr',c:9.0,u:'L',ins:400,m:500},
   // Budget Hatchbacks
   kwid:{b:'Renault',n:'Kwid 1.0',s:'Renault Kwid',c:4.7,u:'L',ins:380,m:220},
   picanto:{b:'Kia',n:'Picanto 1.0 Street',s:'Kia Picanto',c:4.7,u:'L',ins:400,m:230},
