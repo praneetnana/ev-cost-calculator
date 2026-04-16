@@ -56,6 +56,33 @@ body{
 }
 .p input::-webkit-outer-spin-button,.p input::-webkit-inner-spin-button{-webkit-appearance:none}
 
+/* Searchable dropdown */
+.sd{position:relative;display:inline-flex;align-items:center}
+.sd-input{
+  background:none;border:0;outline:0;color:#a8c0e0;font-size:11px;font-weight:600;
+  font-family:inherit;cursor:pointer;width:180px;padding:2px 0;
+}
+.sd-input::placeholder{color:#5a7a9a}
+.sd-arrow{color:#5588cc;font-size:8px;margin-left:4px;pointer-events:none}
+.sd-list{
+  display:none;position:absolute;top:100%;left:-10px;margin-top:6px;
+  background:#141e38;border:1px solid #243352;border-radius:10px;
+  width:280px;max-height:320px;overflow-y:auto;z-index:100;
+  box-shadow:0 8px 24px rgba(0,0,0,0.4);
+  -webkit-overflow-scrolling:touch;
+}
+.sd-list.open{display:block}
+.sd-grp{padding:6px 12px 3px;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#4a6a90;position:sticky;top:0;background:#141e38}
+.sd-opt{
+  padding:8px 12px;font-size:12px;color:#a8c0e0;cursor:pointer;
+  border-bottom:1px solid #1a2640;
+}
+.sd-opt:last-child{border:0}
+.sd-opt:hover,.sd-opt.hl{background:#1a2640;color:#e8edf5}
+.sd-opt.hide{display:none}
+.sd-grp.hide{display:none}
+.sd-none{padding:12px;font-size:11px;color:#4a6a90;text-align:center}
+
 /* Section */
 .st{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#4a6a90;margin:18px 0 10px}
 
@@ -197,14 +224,30 @@ body{
 <body>
 <div class="w">
 
+  <!-- Hero Header -->
+  <div style="text-align:center;padding:8px 0 18px;">
+    <div style="font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#243352;margin-bottom:6px;">Built by Praneet Nana</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:3px;color:#e8edf5;line-height:1;">
+      <span style="color:#4acc80">⚡</span> EV <span style="color:#3b82f6">vs</span> ICE <span style="color:#4acc80">⚡</span>
+    </div>
+    <div style="font-size:11px;color:#4a6a90;margin-top:6px;line-height:1.4;">
+      Should you go electric? Compare the <span style="color:#4acc80;font-weight:600">real running costs</span> of electric vehicles<br>against petrol &amp; diesel cars — tailored for <span style="color:#6aabee;font-weight:600">South Africa</span>
+    </div>
+    <div style="width:60px;height:2px;background:linear-gradient(90deg,#4acc80,#3b82f6);margin:12px auto 0;border-radius:2px;"></div>
+  </div>
+
   <div class="hdr">
-    <div class="tag">Vehicle Running Cost Analysis</div>
+    <div class="tag">Running Cost Comparison</div>
     <h1><span class="ic" id="hIce">Your Car</span> vs <span class="ev" id="hEv">Select EV</span></h1>
-    <div class="sub">Monthly &amp; 3-Year Running Cost Comparison</div>
+    <div class="sub">Monthly, 3-Year Costs &amp; Charge Time Calculator</div>
+  </div>
+
+  <div style="background:#0e1628;border:1px solid #1e2d4d;border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:11px;color:#4a6a90;line-height:1.6;">
+    <strong style="color:#6aabee;">How to use:</strong> Select your <span style="color:#e8866a">ICE vehicle</span> and an <span style="color:#4acc80">electric vehicle</span> below, then adjust your monthly km, fuel price, electricity rate, and <span style="color:#4acc80">solar system size</span> to see a full running cost comparison.
   </div>
 
   <div class="ctrls">
-    <div class="p">🚗 <select id="iceS" onchange="calc()">
+<div class="p">🚗 <select id="iceS" onchange="calc()">
       <option value="" selected disabled>Select vehicle…</option>
       <optgroup label="⭐ Your Cars">
         <option value="c180k">Mercedes C180K</option>
@@ -215,83 +258,211 @@ body{
         <option value="lc200">Toyota LC200 VX (2009)</option>
         <option value="pajero_jr">Mitsubishi Pajero Junior (1997)</option>
       </optgroup>
-      <optgroup label="💰 Budget Hatchbacks">
-        <option value="kwid">Renault Kwid 1.0</option>
-        <option value="picanto">Kia Picanto 1.0 Street</option>
-        <option value="agya">Toyota Agya 1.0</option>
-        <option value="spresso">Suzuki S-Presso 1.0 GL</option>
-        <option value="swift">Suzuki Swift 1.2 GL</option>
-        <option value="datsun">Datsun Go 1.2</option>
+      <optgroup label="🇮🇹 Alfa Romeo">
+        <option value="giulia">Giulia 2.0T</option>
+        <option value="stelvio">Stelvio 2.0T</option>
       </optgroup>
-      <optgroup label="🚗 Hatchbacks">
-        <option value="mazda2">Mazda2 1.5 Dynamic</option>
-        <option value="polo_tsi">VW Polo 1.0 TSI</option>
-        <option value="starlet">Toyota Starlet 1.5 Xs</option>
-        <option value="i20">Hyundai i20 1.2 Motion</option>
-        <option value="polo_gti">VW Polo GTI</option>
+      <optgroup label="💎 Audi">
+        <option value="au_a1">A1 1.0 TFSI</option>
+        <option value="a3">A3 1.4 TFSI</option>
+        <option value="a4">A4 2.0 TFSI</option>
+        <option value="au_a5">A5 2.0 TFSI</option>
+        <option value="au_q3">Q3 1.4 TFSI</option>
+        <option value="q5">Q5 2.0 TFSI</option>
+        <option value="au_q7">Q7 3.0 TDI</option>
+        <option value="s3">S3</option>
       </optgroup>
-      <optgroup label="🚘 Sedans">
-        <option value="mazda3">Mazda3 1.5 Dynamic</option>
-        <option value="jetta">VW Jetta 1.4 TSI</option>
-        <option value="accent">Hyundai Accent 1.6</option>
-        <option value="elantra">Hyundai Elantra 1.6</option>
-        <option value="corolla">Toyota Corolla 1.8 Xs</option>
-        <option value="civic">Honda Civic 1.5T RS</option>
+      <optgroup label="🏎 BMW">
+        <option value="bm_118">118i</option>
+        <option value="bm_220">220i Gran Coupe</option>
+        <option value="bmw320i">320i (G20)</option>
+        <option value="bmw330i">330i (G20)</option>
+        <option value="bmw520d">520d (G30)</option>
+        <option value="bm_x1">X1 sDrive18i</option>
+        <option value="x3">X3 xDrive20d</option>
+        <option value="bm_x5">X5 xDrive30d</option>
+        <option value="m340i">M340i</option>
+        <option value="m3">M3 (G80)</option>
+        <option value="bm_m4">M4 Competition</option>
       </optgroup>
-      <optgroup label="🚙 Crossover / Small SUV">
-        <option value="tcross">VW T-Cross 1.0 TSI</option>
-        <option value="venue">Hyundai Venue 1.0T Fluid</option>
-        <option value="urban_cruiser">Toyota Urban Cruiser 1.5 Xs</option>
-        <option value="corolla_cross">Toyota Corolla Cross 1.8 Xs</option>
-        <option value="qashqai">Nissan Qashqai 1.3T Acenta</option>
-        <option value="creta">Hyundai Creta 1.5 Executive</option>
-        <option value="seltos">Kia Seltos 1.5T EX</option>
+      <optgroup label="🇨🇳 Chery">
+        <option value="ch_t4">Tiggo 4 Pro 1.5T</option>
+        <option value="ch_t7">Tiggo 7 Pro 1.5T</option>
+        <option value="ch_t8">Tiggo 8 Pro 1.6T</option>
+      </optgroup>
+      <optgroup label="🇯🇵 Datsun">
+        <option value="datsun">Go 1.2</option>
+      </optgroup>
+      <optgroup label="🇮🇹 Fiat">
+        <option value="fi_500">500 1.2 Pop</option>
+        <option value="fi_tipo">Tipo 1.4</option>
+      </optgroup>
+      <optgroup label="🇺🇸 Ford">
+        <option value="fo_figo">Figo 1.5 Ambiente</option>
+        <option value="fo_eco">EcoSport 1.0T</option>
+        <option value="fo_puma">Puma 1.0T Titanium</option>
+        <option value="ranger_xl">Ranger 2.0 SiT XL</option>
+        <option value="ranger_xlt">Ranger 2.0 BiT XLT</option>
+        <option value="fo_raptor">Ranger Raptor 3.0 V6</option>
+        <option value="everest">Everest 2.0 BiT XLT</option>
+      </optgroup>
+      <optgroup label="🇨🇳 GWM / Haval">
         <option value="jolion">Haval Jolion 1.5T</option>
-        <option value="rav4">Toyota RAV4 2.0 GX</option>
-        <option value="tiguan">VW Tiguan 1.4 TSI Life</option>
-      </optgroup>
-      <optgroup label="🏔 Large SUV">
-        <option value="fortuner24">Toyota Fortuner 2.4 GD-6</option>
-        <option value="everest">Ford Everest 2.0 BiT XLT</option>
-        <option value="mux">Isuzu MU-X 3.0 4x4</option>
-        <option value="fortuner28">Toyota Fortuner 2.8 GD-6 4x4</option>
-      </optgroup>
-      <optgroup label="🛻 Bakkies">
-        <option value="ranger_xl">Ford Ranger 2.0 SiT XL</option>
-        <option value="dmax">Isuzu D-Max 1.9 LS</option>
-        <option value="hilux24">Toyota Hilux 2.4 GD-6 SR</option>
+        <option value="gw_h6">Haval H6 2.0T</option>
         <option value="gwm_p">GWM P-Series 2.0T</option>
-        <option value="ranger_xlt">Ford Ranger 2.0 BiT XLT</option>
-        <option value="navara">Nissan Navara 2.5 dCi</option>
-        <option value="hilux28">Toyota Hilux 2.8 GD-6</option>
       </optgroup>
-      <optgroup label="💎 Premium">
-        <option value="a3">Audi A3 1.4 TFSI</option>
-        <option value="bmw520d">BMW 520d (G30)</option>
-        <option value="x3">BMW X3 xDrive20d</option>
-        <option value="glc">Mercedes GLC 220d</option>
-        <option value="bmw320i">BMW 320i (G20)</option>
-        <option value="c200_w206">Mercedes C200 (W206)</option>
-        <option value="a4">Audi A4 2.0 TFSI</option>
-        <option value="bmw330i">BMW 330i (G20)</option>
-        <option value="c300">Mercedes C300 (W206)</option>
-        <option value="q5">Audi Q5 2.0 TFSI</option>
-        <option value="xc60">Volvo XC60 T5</option>
-        <option value="fpace">Jaguar F-Pace P250</option>
+      <optgroup label="🇯🇵 Honda">
+        <option value="ho_fit">Fit 1.5</option>
+        <option value="ho_hrv">HR-V 1.5</option>
+        <option value="civic">Civic 1.5T RS</option>
+        <option value="ho_crv">CR-V 1.5T</option>
+      </optgroup>
+      <optgroup label="🇰🇷 Hyundai">
+        <option value="hy_i10">Grand i10 1.2</option>
+        <option value="i20">i20 1.2 Motion</option>
+        <option value="accent">Accent 1.6</option>
+        <option value="elantra">Elantra 1.6</option>
+        <option value="venue">Venue 1.0T Fluid</option>
+        <option value="creta">Creta 1.5 Executive</option>
+        <option value="hy_tuc">Tucson 2.0</option>
+        <option value="hy_santa">Santa Fe 2.2 CRDi</option>
+      </optgroup>
+      <optgroup label="🇯🇵 Isuzu">
+        <option value="dmax">D-Max 1.9 LS</option>
+        <option value="mux">MU-X 3.0 4x4</option>
+      </optgroup>
+      <optgroup label="🇬🇧 Jaguar">
+        <option value="ja_xe">XE P250</option>
+        <option value="fpace">F-Pace P250</option>
+      </optgroup>
+      <optgroup label="🇺🇸 Jeep">
+        <option value="je_ren">Renegade 1.4T</option>
+        <option value="je_comp">Compass 1.4T</option>
+        <option value="je_wran">Wrangler 3.6 V6</option>
+        <option value="je_gc">Grand Cherokee 3.6 V6</option>
+      </optgroup>
+      <optgroup label="🇰🇷 Kia">
+        <option value="picanto">Picanto 1.0 Street</option>
+        <option value="ki_rio">Rio 1.4</option>
+        <option value="seltos">Seltos 1.5T EX</option>
+        <option value="ki_sport">Sportage 2.0</option>
+        <option value="ki_sor">Sorento 2.2 CRDi</option>
+      </optgroup>
+      <optgroup label="🇬🇧 Land Rover / Range Rover">
+        <option value="lr_disc">Discovery Sport D200</option>
+        <option value="lr_velar">Range Rover Velar D200</option>
         <option value="rr_sport">Range Rover Sport D300</option>
-        <option value="defender">Land Rover Defender 110 D300</option>
-        <option value="cayenne">Porsche Cayenne</option>
+        <option value="defender">Defender 110 D300</option>
       </optgroup>
-      <optgroup label="🏁 Performance">
-        <option value="gti">VW Golf 8 GTI</option>
-        <option value="s3">Audi S3</option>
-        <option value="golf_r">VW Golf 8 R</option>
-        <option value="m340i">BMW M340i</option>
-        <option value="gr86">Toyota GR86</option>
-        <option value="gr_corolla">Toyota GR Corolla</option>
-        <option value="amg_a45">Mercedes AMG A45 S</option>
-        <option value="amg_c43">Mercedes AMG C43</option>
-        <option value="m3">BMW M3 (G80)</option>
+      <optgroup label="🇯🇵 Lexus">
+        <option value="le_nx">NX 350h</option>
+        <option value="le_rx">RX 500h</option>
+      </optgroup>
+      <optgroup label="🇯🇵 Mazda">
+        <option value="mazda2">Mazda2 1.5 Dynamic</option>
+        <option value="mazda3">Mazda3 1.5 Dynamic</option>
+        <option value="mz_cx30">CX-30 2.0</option>
+        <option value="mz_cx5">CX-5 2.0</option>
+        <option value="mz_cx60">CX-60 3.3 e-Skyactiv D</option>
+      </optgroup>
+      <optgroup label="⭐ Mercedes-Benz">
+        <option value="mb_a200">A200</option>
+        <option value="c200_w206">C200 (W206)</option>
+        <option value="c300">C300 (W206)</option>
+        <option value="mb_e200">E200</option>
+        <option value="mb_gla">GLA 200</option>
+        <option value="mb_glb">GLB 200</option>
+        <option value="glc">GLC 220d</option>
+        <option value="mb_gle">GLE 300d</option>
+        <option value="amg_a45">AMG A45 S</option>
+        <option value="amg_c43">AMG C43</option>
+        <option value="amg_c63">AMG C63 S</option>
+      </optgroup>
+      <optgroup label="🇬🇧 MINI">
+        <option value="mn_coop">Cooper 1.5T</option>
+        <option value="mn_coops">Cooper S 2.0T</option>
+        <option value="mn_cx">Countryman 2.0T ALL4</option>
+      </optgroup>
+      <optgroup label="🇯🇵 Mitsubishi">
+        <option value="mi_asx">ASX 2.0</option>
+        <option value="mi_ecl">Eclipse Cross 1.5T</option>
+        <option value="mi_paj">Pajero Sport 2.4 DiD</option>
+      </optgroup>
+      <optgroup label="🇯🇵 Nissan">
+        <option value="ni_mic">Micra 1.0T</option>
+        <option value="qashqai">Qashqai 1.3T Acenta</option>
+        <option value="ni_xtr">X-Trail 2.5</option>
+        <option value="navara">Navara 2.5 dCi</option>
+        <option value="ni_pat">Patrol 5.6 V8</option>
+      </optgroup>
+      <optgroup label="🇩🇪 Opel">
+        <option value="op_cor">Corsa 1.2T</option>
+        <option value="op_mok">Mokka 1.2T</option>
+        <option value="op_gr">Grandland 1.6T</option>
+      </optgroup>
+      <optgroup label="🇫🇷 Peugeot">
+        <option value="pe_208">208 1.2T</option>
+        <option value="pe_2008">2008 1.2T</option>
+        <option value="pe_3008">3008 1.6T</option>
+      </optgroup>
+      <optgroup label="🏁 Porsche">
+        <option value="po_mac">Macan 2.0T</option>
+        <option value="cayenne">Cayenne</option>
+        <option value="po_911">911 Carrera</option>
+      </optgroup>
+      <optgroup label="🇫🇷 Renault">
+        <option value="kwid">Kwid 1.0</option>
+        <option value="re_clio">Clio 1.0T</option>
+        <option value="re_dust">Duster 1.5 dCi</option>
+        <option value="re_kol">Koleos 2.5</option>
+      </optgroup>
+      <optgroup label="🇯🇵 Subaru">
+        <option value="su_xv">XV 2.0i</option>
+        <option value="su_for">Forester 2.0i</option>
+        <option value="su_out">Outback 2.5i</option>
+      </optgroup>
+      <optgroup label="🇯🇵 Suzuki">
+        <option value="spresso">S-Presso 1.0 GL</option>
+        <option value="swift">Swift 1.2 GL</option>
+        <option value="sz_bal">Baleno 1.5 GL</option>
+        <option value="sz_vit">Vitara 1.4T</option>
+        <option value="sz_jim">Jimny 1.5 GLX</option>
+        <option value="sz_gv">Grand Vitara 1.5T</option>
+      </optgroup>
+      <optgroup label="🇯🇵 Toyota">
+        <option value="agya">Agya 1.0</option>
+        <option value="starlet">Starlet 1.5 Xs</option>
+        <option value="to_yc">Yaris Cross 1.5</option>
+        <option value="urban_cruiser">Urban Cruiser 1.5 Xs</option>
+        <option value="corolla">Corolla 1.8 Xs</option>
+        <option value="corolla_cross">Corolla Cross 1.8 Xs</option>
+        <option value="rav4">RAV4 2.0 GX</option>
+        <option value="fortuner24">Fortuner 2.4 GD-6</option>
+        <option value="fortuner28">Fortuner 2.8 GD-6 4x4</option>
+        <option value="hilux24">Hilux 2.4 GD-6 SR</option>
+        <option value="hilux28">Hilux 2.8 GD-6</option>
+        <option value="to_lc300">Land Cruiser 300 3.3D</option>
+        <option value="gr86">GR86</option>
+        <option value="gr_corolla">GR Corolla</option>
+        <option value="to_supra">GR Supra 3.0</option>
+      </optgroup>
+      <optgroup label="🇩🇪 Volkswagen">
+        <option value="polo_tsi">Polo 1.0 TSI</option>
+        <option value="polo_gti">Polo GTI</option>
+        <option value="jetta">Jetta 1.4 TSI</option>
+        <option value="tcross">T-Cross 1.0 TSI</option>
+        <option value="vw_troc">T-Roc 1.4 TSI</option>
+        <option value="tiguan">Tiguan 1.4 TSI Life</option>
+        <option value="vw_tigr">Tiguan R 2.0 TSI</option>
+        <option value="vw_tour">Touareg 3.0 TDI</option>
+        <option value="gti">Golf 8 GTI</option>
+        <option value="golf_r">Golf 8 R</option>
+        <option value="vw_amar">Amarok 2.0 BiTDI</option>
+      </optgroup>
+      <optgroup label="🇸🇪 Volvo">
+        <option value="vo_xc40">XC40 T4</option>
+        <option value="xc60">XC60 T5</option>
+        <option value="vo_xc90">XC90 T6</option>
       </optgroup>
     </select></div>
     <div class="p">⚡ <select id="evS" onchange="calc()">
@@ -380,18 +551,20 @@ body{
       <option value="x">Custom</option>
     </select><input type="number" id="eskX" style="display:none" placeholder="R/kWh" step="0.1" min="0.5" max="15" oninput="calc()"></div>
     <div class="p">☀️ Solar <select id="solS" onchange="hSol()">
+      <option value="0" selected>No Solar</option>
       <option value="2">2 kW (4 panels)</option>
       <option value="3">3 kW (6 panels)</option>
-      <option value="4" selected>4 kW (8 panels)</option>
+      <option value="4">4 kW (8 panels)</option>
       <option value="5">5 kW (10 panels)</option>
       <option value="6">6 kW (12 panels)</option>
       <option value="8">8 kW (16 panels)</option>
       <option value="10">10 kW (20 panels)</option>
       <option value="x">Custom</option>
     </select><input type="number" id="solX" style="display:none" placeholder="kW" step="0.5" min="0.5" max="30" oninput="cc()"> <span style="color:#4acc80">R0/kWh</span></div>
-    <div class="p">🛡 ICE <span id="pIns">R600</span></div>
-    <div class="p">🛡 EV <span id="pEvIns">R1,000</span></div>
+    <div class="p">🛡 Insurance ICE <span id="pIns">R600</span></div>
+    <div class="p">🛡 Insurance EV <span id="pEvIns">R1,000</span></div>
     <div class="p">🔧 <span id="pMnt">R500/mo</span></div>
+    <div class="p rst" onclick="resetAll()" style="cursor:pointer;color:#e8866a;border-color:#4a2020;">🔄 Reset</div>
   </div>
 
   <div class="st">Monthly Breakdown</div>
@@ -513,7 +686,7 @@ body{
   </div>
 
   <div class="foot">
-    <div class="foot-n" id="fN">ICE maint. included. BYD maint. R0. No purchase price.</div>
+    <div class="foot-n" id="fN"></div>
     <div class="foot-b">Apr 2026</div>
   </div>
   <div style="text-align:center;padding:20px 0 10px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#243352">
@@ -531,77 +704,184 @@ var ICE={
   polo_vivo:{b:'Volkswagen',n:'Polo Vivo (2021)',s:'VW Polo Vivo',c:6.8,u:'L',ins:600,m:350},
   lc200:{b:'Toyota',n:'LC200 VX (2009)',s:'Toyota LC200',c:16.5,u:'L',ins:1200,m:800},
   pajero_jr:{b:'Mitsubishi',n:'Pajero Junior 1.1 (1997)',s:'Mitsubishi Pajero Jr',c:9.0,u:'L',ins:400,m:500},
-  // Budget Hatchbacks
-  kwid:{b:'Renault',n:'Kwid 1.0',s:'Renault Kwid',c:4.7,u:'L',ins:380,m:220},
-  picanto:{b:'Kia',n:'Picanto 1.0 Street',s:'Kia Picanto',c:4.7,u:'L',ins:400,m:230},
-  agya:{b:'Toyota',n:'Agya 1.0',s:'Toyota Agya',c:4.8,u:'L',ins:400,m:230},
-  spresso:{b:'Suzuki',n:'S-Presso 1.0 GL',s:'Suzuki S-Presso',c:4.9,u:'L',ins:380,m:220},
-  swift:{b:'Suzuki',n:'Swift 1.2 GL',s:'Suzuki Swift',c:5.0,u:'L',ins:450,m:250},
+  // Alfa Romeo
+  giulia:{b:'Alfa Romeo',n:'Giulia 2.0T',s:'Alfa Giulia',c:7.5,u:'L',ins:1100,m:700},
+  stelvio:{b:'Alfa Romeo',n:'Stelvio 2.0T',s:'Alfa Stelvio',c:8.5,u:'L',ins:1200,m:750},
+  // Audi
+  au_a1:{b:'Audi',n:'A1 1.0 TFSI',s:'Audi A1',c:5.2,u:'L',ins:700,m:450},
+  a3:{b:'Audi',n:'A3 1.4 TFSI',s:'Audi A3',c:5.8,u:'L',ins:800,m:550},
+  a4:{b:'Audi',n:'A4 2.0 TFSI',s:'Audi A4',c:7.2,u:'L',ins:950,m:650},
+  au_a5:{b:'Audi',n:'A5 2.0 TFSI',s:'Audi A5',c:7.4,u:'L',ins:1000,m:650},
+  au_q3:{b:'Audi',n:'Q3 1.4 TFSI',s:'Audi Q3',c:6.8,u:'L',ins:850,m:550},
+  q5:{b:'Audi',n:'Q5 2.0 TFSI',s:'Audi Q5',c:8.0,u:'L',ins:1100,m:700},
+  au_q7:{b:'Audi',n:'Q7 3.0 TDI',s:'Audi Q7',c:7.8,u:'L',ins:1400,m:850},
+  s3:{b:'Audi',n:'S3',s:'Audi S3',c:7.8,u:'L',ins:1000,m:600},
+  // BMW
+  bm_118:{b:'BMW',n:'118i',s:'BMW 118i',c:6.2,u:'L',ins:750,m:500},
+  bm_220:{b:'BMW',n:'220i Gran Coupe',s:'BMW 220i GC',c:6.5,u:'L',ins:800,m:550},
+  bmw320i:{b:'BMW',n:'320i (G20)',s:'BMW 320i',c:7.0,u:'L',ins:900,m:600},
+  bmw330i:{b:'BMW',n:'330i (G20)',s:'BMW 330i',c:7.5,u:'L',ins:1000,m:650},
+  bmw520d:{b:'BMW',n:'520d (G30)',s:'BMW 520d',c:5.8,u:'L',ins:1050,m:700},
+  bm_x1:{b:'BMW',n:'X1 sDrive18i',s:'BMW X1',c:7.0,u:'L',ins:850,m:550},
+  x3:{b:'BMW',n:'X3 xDrive20d',s:'BMW X3 20d',c:6.5,u:'L',ins:1100,m:700},
+  bm_x5:{b:'BMW',n:'X5 xDrive30d',s:'BMW X5',c:7.5,u:'L',ins:1400,m:850},
+  m340i:{b:'BMW',n:'M340i',s:'BMW M340i',c:8.5,u:'L',ins:1200,m:700},
+  m3:{b:'BMW',n:'M3 (G80)',s:'BMW M3',c:10.0,u:'L',ins:1500,m:850},
+  bm_m4:{b:'BMW',n:'M4 Competition',s:'BMW M4',c:10.2,u:'L',ins:1600,m:900},
+  // Chery
+  ch_t4:{b:'Chery',n:'Tiggo 4 Pro 1.5T',s:'Chery Tiggo 4',c:7.5,u:'L',ins:500,m:300},
+  ch_t7:{b:'Chery',n:'Tiggo 7 Pro 1.5T',s:'Chery Tiggo 7',c:7.8,u:'L',ins:550,m:320},
+  ch_t8:{b:'Chery',n:'Tiggo 8 Pro 1.6T',s:'Chery Tiggo 8',c:8.5,u:'L',ins:600,m:350},
+  // Datsun
   datsun:{b:'Datsun',n:'Go 1.2',s:'Datsun Go',c:5.2,u:'L',ins:350,m:220},
-  // Hatchbacks
-  starlet:{b:'Toyota',n:'Starlet 1.5 Xs',s:'Toyota Starlet',c:5.8,u:'L',ins:480,m:270},
-  mazda2:{b:'Mazda',n:'2 1.5 Dynamic',s:'Mazda2',c:5.4,u:'L',ins:500,m:280},
-  polo_tsi:{b:'Volkswagen',n:'Polo 1.0 TSI',s:'VW Polo TSI',c:5.5,u:'L',ins:550,m:300},
-  i20:{b:'Hyundai',n:'i20 1.2 Motion',s:'Hyundai i20',c:5.8,u:'L',ins:500,m:280},
-  polo_gti:{b:'Volkswagen',n:'Polo GTI',s:'VW Polo GTI',c:6.5,u:'L',ins:700,m:400},
-  // Sedans
-  mazda3:{b:'Mazda',n:'3 1.5 Dynamic',s:'Mazda3',c:5.8,u:'L',ins:600,m:320},
-  jetta:{b:'Volkswagen',n:'Jetta 1.4 TSI',s:'VW Jetta',c:6.0,u:'L',ins:600,m:350},
-  accent:{b:'Hyundai',n:'Accent 1.6',s:'Hyundai Accent',c:6.2,u:'L',ins:500,m:300},
-  elantra:{b:'Hyundai',n:'Elantra 1.6',s:'Hyundai Elantra',c:6.5,u:'L',ins:580,m:320},
-  corolla:{b:'Toyota',n:'Corolla 1.8 Xs',s:'Toyota Corolla',c:6.5,u:'L',ins:650,m:350},
-  civic:{b:'Honda',n:'Civic 1.5T RS',s:'Honda Civic RS',c:6.8,u:'L',ins:750,m:400},
-  // Crossover / Small SUV
-  tcross:{b:'Volkswagen',n:'T-Cross 1.0 TSI',s:'VW T-Cross',c:5.8,u:'L',ins:550,m:320},
-  venue:{b:'Hyundai',n:'Venue 1.0T Fluid',s:'Hyundai Venue',c:6.0,u:'L',ins:550,m:300},
-  urban_cruiser:{b:'Toyota',n:'Urban Cruiser 1.5 Xs',s:'Toyota Urban Cruiser',c:6.2,u:'L',ins:560,m:320},
-  qashqai:{b:'Nissan',n:'Qashqai 1.3T Acenta',s:'Nissan Qashqai',c:6.8,u:'L',ins:650,m:380},
-  corolla_cross:{b:'Toyota',n:'Corolla Cross 1.8 Xs',s:'Toyota Corolla Cross',c:6.8,u:'L',ins:650,m:350},
-  creta:{b:'Hyundai',n:'Creta 1.5 Executive',s:'Hyundai Creta',c:7.0,u:'L',ins:600,m:350},
-  seltos:{b:'Kia',n:'Seltos 1.5T EX',s:'Kia Seltos',c:7.0,u:'L',ins:600,m:350},
-  jolion:{b:'Haval',n:'Jolion 1.5T',s:'Haval Jolion',c:7.2,u:'L',ins:550,m:320},
-  tiguan:{b:'Volkswagen',n:'Tiguan 1.4 TSI Life',s:'VW Tiguan',c:7.5,u:'L',ins:800,m:450},
-  rav4:{b:'Toyota',n:'RAV4 2.0 GX',s:'Toyota RAV4',c:7.5,u:'L',ins:750,m:400},
-  // Large SUV
-  fortuner24:{b:'Toyota',n:'Fortuner 2.4 GD-6',s:'Toyota Fortuner 2.4',c:8.5,u:'L',ins:900,m:500},
-  fortuner28:{b:'Toyota',n:'Fortuner 2.8 GD-6 4x4',s:'Toyota Fortuner 2.8',c:9.5,u:'L',ins:1000,m:550},
-  everest:{b:'Ford',n:'Everest 2.0 BiT XLT',s:'Ford Everest',c:8.5,u:'L',ins:950,m:520},
-  mux:{b:'Isuzu',n:'MU-X 3.0 4x4',s:'Isuzu MU-X',c:9.0,u:'L',ins:950,m:520},
-  // Bakkies
+  // Fiat
+  fi_500:{b:'Fiat',n:'500 1.2 Pop',s:'Fiat 500',c:5.0,u:'L',ins:500,m:350},
+  fi_tipo:{b:'Fiat',n:'Tipo 1.4',s:'Fiat Tipo',c:6.5,u:'L',ins:550,m:350},
+  // Ford
+  fo_figo:{b:'Ford',n:'Figo 1.5 Ambiente',s:'Ford Figo',c:6.0,u:'L',ins:450,m:280},
+  fo_eco:{b:'Ford',n:'EcoSport 1.0T',s:'Ford EcoSport',c:6.2,u:'L',ins:550,m:320},
+  fo_puma:{b:'Ford',n:'Puma 1.0T Titanium',s:'Ford Puma',c:6.0,u:'L',ins:600,m:350},
   ranger_xl:{b:'Ford',n:'Ranger 2.0 SiT XL',s:'Ford Ranger XL',c:7.2,u:'L',ins:750,m:450},
   ranger_xlt:{b:'Ford',n:'Ranger 2.0 BiT XLT',s:'Ford Ranger XLT',c:8.0,u:'L',ins:850,m:500},
-  hilux24:{b:'Toyota',n:'Hilux 2.4 GD-6 SR',s:'Toyota Hilux 2.4',c:7.8,u:'L',ins:800,m:480},
-  hilux28:{b:'Toyota',n:'Hilux 2.8 GD-6',s:'Toyota Hilux 2.8',c:8.5,u:'L',ins:900,m:500},
-  dmax:{b:'Isuzu',n:'D-Max 1.9 LS',s:'Isuzu D-Max',c:7.5,u:'L',ins:750,m:450},
-  navara:{b:'Nissan',n:'Navara 2.5 dCi',s:'Nissan Navara',c:8.5,u:'L',ins:800,m:480},
+  fo_raptor:{b:'Ford',n:'Ranger Raptor 3.0 V6',s:'Ford Raptor',c:11.0,u:'L',ins:1200,m:650},
+  everest:{b:'Ford',n:'Everest 2.0 BiT XLT',s:'Ford Everest',c:8.5,u:'L',ins:950,m:520},
+  // GWM / Haval
+  jolion:{b:'Haval',n:'Jolion 1.5T',s:'Haval Jolion',c:7.2,u:'L',ins:550,m:320},
+  gw_h6:{b:'Haval',n:'H6 2.0T',s:'Haval H6',c:8.0,u:'L',ins:650,m:380},
   gwm_p:{b:'GWM',n:'P-Series 2.0T',s:'GWM P-Series',c:8.0,u:'L',ins:650,m:400},
-  // Premium
-  a3:{b:'Audi',n:'A3 1.4 TFSI',s:'Audi A3',c:5.8,u:'L',ins:800,m:550},
-  bmw320i:{b:'BMW',n:'320i (G20)',s:'BMW 320i',c:7.0,u:'L',ins:900,m:600},
-  c200_w206:{b:'Mercedes',n:'C200 (W206)',s:'Mercedes C200',c:7.0,u:'L',ins:900,m:600},
-  a4:{b:'Audi',n:'A4 2.0 TFSI',s:'Audi A4',c:7.2,u:'L',ins:950,m:650},
-  bmw330i:{b:'BMW',n:'330i (G20)',s:'BMW 330i',c:7.5,u:'L',ins:1000,m:650},
-  c300:{b:'Mercedes',n:'C300 (W206)',s:'Mercedes C300',c:7.8,u:'L',ins:1000,m:650},
-  bmw520d:{b:'BMW',n:'520d (G30)',s:'BMW 520d',c:5.8,u:'L',ins:1050,m:700},
-  x3:{b:'BMW',n:'X3 xDrive20d',s:'BMW X3 20d',c:6.5,u:'L',ins:1100,m:700},
-  glc:{b:'Mercedes',n:'GLC 220d',s:'Mercedes GLC',c:6.8,u:'L',ins:1100,m:700},
-  q5:{b:'Audi',n:'Q5 2.0 TFSI',s:'Audi Q5',c:8.0,u:'L',ins:1100,m:700},
-  xc60:{b:'Volvo',n:'XC60 T5',s:'Volvo XC60',c:8.2,u:'L',ins:1050,m:680},
+  // Honda
+  ho_fit:{b:'Honda',n:'Fit 1.5',s:'Honda Fit',c:5.8,u:'L',ins:500,m:300},
+  ho_hrv:{b:'Honda',n:'HR-V 1.5',s:'Honda HR-V',c:6.5,u:'L',ins:600,m:350},
+  civic:{b:'Honda',n:'Civic 1.5T RS',s:'Honda Civic RS',c:6.8,u:'L',ins:750,m:400},
+  ho_crv:{b:'Honda',n:'CR-V 1.5T',s:'Honda CR-V',c:7.5,u:'L',ins:800,m:450},
+  // Hyundai
+  hy_i10:{b:'Hyundai',n:'Grand i10 1.2',s:'Hyundai i10',c:5.3,u:'L',ins:420,m:250},
+  i20:{b:'Hyundai',n:'i20 1.2 Motion',s:'Hyundai i20',c:5.8,u:'L',ins:500,m:280},
+  accent:{b:'Hyundai',n:'Accent 1.6',s:'Hyundai Accent',c:6.2,u:'L',ins:500,m:300},
+  elantra:{b:'Hyundai',n:'Elantra 1.6',s:'Hyundai Elantra',c:6.5,u:'L',ins:580,m:320},
+  venue:{b:'Hyundai',n:'Venue 1.0T Fluid',s:'Hyundai Venue',c:6.0,u:'L',ins:550,m:300},
+  creta:{b:'Hyundai',n:'Creta 1.5 Executive',s:'Hyundai Creta',c:7.0,u:'L',ins:600,m:350},
+  hy_tuc:{b:'Hyundai',n:'Tucson 2.0',s:'Hyundai Tucson',c:7.8,u:'L',ins:750,m:420},
+  hy_santa:{b:'Hyundai',n:'Santa Fe 2.2 CRDi',s:'Hyundai Santa Fe',c:8.0,u:'L',ins:900,m:500},
+  // Isuzu
+  dmax:{b:'Isuzu',n:'D-Max 1.9 LS',s:'Isuzu D-Max',c:7.5,u:'L',ins:750,m:450},
+  mux:{b:'Isuzu',n:'MU-X 3.0 4x4',s:'Isuzu MU-X',c:9.0,u:'L',ins:950,m:520},
+  // Jaguar
   fpace:{b:'Jaguar',n:'F-Pace P250',s:'Jaguar F-Pace',c:8.8,u:'L',ins:1200,m:800},
-  rr_sport:{b:'Range Rover',n:'Sport D300',s:'RR Sport D300',c:8.5,u:'L',ins:1500,m:900},
+  ja_xe:{b:'Jaguar',n:'XE P250',s:'Jaguar XE',c:8.0,u:'L',ins:1100,m:700},
+  // Jeep
+  je_ren:{b:'Jeep',n:'Renegade 1.4T',s:'Jeep Renegade',c:7.5,u:'L',ins:700,m:450},
+  je_comp:{b:'Jeep',n:'Compass 1.4T',s:'Jeep Compass',c:7.8,u:'L',ins:800,m:480},
+  je_wran:{b:'Jeep',n:'Wrangler 3.6 V6',s:'Jeep Wrangler',c:12.5,u:'L',ins:1200,m:700},
+  je_gc:{b:'Jeep',n:'Grand Cherokee 3.6 V6',s:'Jeep Grand Cherokee',c:11.0,u:'L',ins:1300,m:750},
+  // Kia
+  picanto:{b:'Kia',n:'Picanto 1.0 Street',s:'Kia Picanto',c:4.7,u:'L',ins:400,m:230},
+  ki_rio:{b:'Kia',n:'Rio 1.4',s:'Kia Rio',c:5.8,u:'L',ins:500,m:280},
+  seltos:{b:'Kia',n:'Seltos 1.5T EX',s:'Kia Seltos',c:7.0,u:'L',ins:600,m:350},
+  ki_sport:{b:'Kia',n:'Sportage 2.0',s:'Kia Sportage',c:7.8,u:'L',ins:700,m:400},
+  ki_sor:{b:'Kia',n:'Sorento 2.2 CRDi',s:'Kia Sorento',c:8.0,u:'L',ins:850,m:480},
+  // Land Rover
   defender:{b:'Land Rover',n:'Defender 110 D300',s:'LR Defender',c:9.5,u:'L',ins:1500,m:900},
-  cayenne:{b:'Porsche',n:'Cayenne',s:'Porsche Cayenne',c:11.5,u:'L',ins:1800,m:1000},
-  // Performance
-  gti:{b:'Volkswagen',n:'Golf 8 GTI',s:'VW Golf GTI',c:7.5,u:'L',ins:900,m:500},
-  s3:{b:'Audi',n:'S3',s:'Audi S3',c:7.8,u:'L',ins:1000,m:600},
-  golf_r:{b:'Volkswagen',n:'Golf 8 R',s:'VW Golf R',c:8.0,u:'L',ins:1000,m:550},
-  m340i:{b:'BMW',n:'M340i',s:'BMW M340i',c:8.5,u:'L',ins:1200,m:700},
-  gr86:{b:'Toyota',n:'GR86',s:'Toyota GR86',c:8.5,u:'L',ins:800,m:450},
-  gr_corolla:{b:'Toyota',n:'GR Corolla',s:'Toyota GR Corolla',c:8.8,u:'L',ins:900,m:500},
+  rr_sport:{b:'Range Rover',n:'Sport D300',s:'RR Sport D300',c:8.5,u:'L',ins:1500,m:900},
+  lr_velar:{b:'Range Rover',n:'Velar D200',s:'RR Velar',c:7.5,u:'L',ins:1400,m:850},
+  lr_disc:{b:'Land Rover',n:'Discovery Sport D200',s:'LR Discovery Sport',c:7.8,u:'L',ins:1200,m:750},
+  // Lexus
+  le_nx:{b:'Lexus',n:'NX 350h',s:'Lexus NX',c:5.8,u:'L',ins:1100,m:600},
+  le_rx:{b:'Lexus',n:'RX 500h',s:'Lexus RX',c:7.5,u:'L',ins:1400,m:750},
+  // Mazda
+  mazda2:{b:'Mazda',n:'2 1.5 Dynamic',s:'Mazda2',c:5.4,u:'L',ins:500,m:280},
+  mazda3:{b:'Mazda',n:'3 1.5 Dynamic',s:'Mazda3',c:5.8,u:'L',ins:600,m:320},
+  mz_cx30:{b:'Mazda',n:'CX-30 2.0',s:'Mazda CX-30',c:6.8,u:'L',ins:650,m:380},
+  mz_cx5:{b:'Mazda',n:'CX-5 2.0',s:'Mazda CX-5',c:7.5,u:'L',ins:750,m:420},
+  mz_cx60:{b:'Mazda',n:'CX-60 3.3 e-Skyactiv D',s:'Mazda CX-60',c:5.8,u:'L',ins:900,m:500},
+  // Mercedes
+  mb_a200:{b:'Mercedes',n:'A200',s:'Mercedes A200',c:6.5,u:'L',ins:800,m:550},
+  c200_w206:{b:'Mercedes',n:'C200 (W206)',s:'Mercedes C200',c:7.0,u:'L',ins:900,m:600},
+  c300:{b:'Mercedes',n:'C300 (W206)',s:'Mercedes C300',c:7.8,u:'L',ins:1000,m:650},
+  mb_e200:{b:'Mercedes',n:'E200',s:'Mercedes E200',c:7.2,u:'L',ins:1100,m:700},
+  mb_gla:{b:'Mercedes',n:'GLA 200',s:'Mercedes GLA',c:6.8,u:'L',ins:850,m:550},
+  mb_glb:{b:'Mercedes',n:'GLB 200',s:'Mercedes GLB',c:7.2,u:'L',ins:900,m:580},
+  glc:{b:'Mercedes',n:'GLC 220d',s:'Mercedes GLC',c:6.8,u:'L',ins:1100,m:700},
+  mb_gle:{b:'Mercedes',n:'GLE 300d',s:'Mercedes GLE',c:7.8,u:'L',ins:1400,m:800},
   amg_a45:{b:'Mercedes',n:'AMG A45 S',s:'Mercedes AMG A45 S',c:9.0,u:'L',ins:1300,m:750},
   amg_c43:{b:'Mercedes',n:'AMG C43',s:'Mercedes AMG C43',c:9.5,u:'L',ins:1300,m:750},
-  m3:{b:'BMW',n:'M3 (G80)',s:'BMW M3',c:10.0,u:'L',ins:1500,m:850}
+  amg_c63:{b:'Mercedes',n:'AMG C63 S',s:'Mercedes AMG C63',c:11.0,u:'L',ins:1800,m:1000},
+  // MINI
+  mn_coop:{b:'MINI',n:'Cooper 1.5T',s:'MINI Cooper',c:5.5,u:'L',ins:700,m:450},
+  mn_coops:{b:'MINI',n:'Cooper S 2.0T',s:'MINI Cooper S',c:6.5,u:'L',ins:800,m:500},
+  mn_cx:{b:'MINI',n:'Countryman 2.0T ALL4',s:'MINI Countryman',c:7.5,u:'L',ins:900,m:550},
+  // Mitsubishi
+  mi_asx:{b:'Mitsubishi',n:'ASX 2.0',s:'Mitsubishi ASX',c:7.5,u:'L',ins:550,m:350},
+  mi_ecl:{b:'Mitsubishi',n:'Eclipse Cross 1.5T',s:'Mitsubishi Eclipse Cross',c:7.5,u:'L',ins:600,m:380},
+  mi_paj:{b:'Mitsubishi',n:'Pajero Sport 2.4 DiD',s:'Mitsubishi Pajero Sport',c:8.5,u:'L',ins:850,m:500},
+  // Nissan
+  ni_mic:{b:'Nissan',n:'Micra 1.0T',s:'Nissan Micra',c:5.0,u:'L',ins:420,m:250},
+  qashqai:{b:'Nissan',n:'Qashqai 1.3T Acenta',s:'Nissan Qashqai',c:6.8,u:'L',ins:650,m:380},
+  ni_xtr:{b:'Nissan',n:'X-Trail 2.5',s:'Nissan X-Trail',c:8.0,u:'L',ins:750,m:420},
+  navara:{b:'Nissan',n:'Navara 2.5 dCi',s:'Nissan Navara',c:8.5,u:'L',ins:800,m:480},
+  ni_pat:{b:'Nissan',n:'Patrol 5.6 V8',s:'Nissan Patrol',c:16.0,u:'L',ins:1500,m:900},
+  // Opel
+  op_cor:{b:'Opel',n:'Corsa 1.2T',s:'Opel Corsa',c:5.5,u:'L',ins:500,m:300},
+  op_mok:{b:'Opel',n:'Mokka 1.2T',s:'Opel Mokka',c:6.2,u:'L',ins:600,m:350},
+  op_gr:{b:'Opel',n:'Grandland 1.6T',s:'Opel Grandland',c:7.5,u:'L',ins:700,m:400},
+  // Peugeot
+  pe_208:{b:'Peugeot',n:'208 1.2T',s:'Peugeot 208',c:5.2,u:'L',ins:500,m:320},
+  pe_2008:{b:'Peugeot',n:'2008 1.2T',s:'Peugeot 2008',c:5.8,u:'L',ins:600,m:350},
+  pe_3008:{b:'Peugeot',n:'3008 1.6T',s:'Peugeot 3008',c:7.0,u:'L',ins:700,m:400},
+  // Porsche
+  cayenne:{b:'Porsche',n:'Cayenne',s:'Porsche Cayenne',c:11.5,u:'L',ins:1800,m:1000},
+  po_mac:{b:'Porsche',n:'Macan 2.0T',s:'Porsche Macan',c:9.0,u:'L',ins:1500,m:800},
+  po_911:{b:'Porsche',n:'911 Carrera',s:'Porsche 911',c:10.5,u:'L',ins:2500,m:1200},
+  // Renault
+  kwid:{b:'Renault',n:'Kwid 1.0',s:'Renault Kwid',c:4.7,u:'L',ins:380,m:220},
+  re_clio:{b:'Renault',n:'Clio 1.0T',s:'Renault Clio',c:5.2,u:'L',ins:500,m:300},
+  re_dust:{b:'Renault',n:'Duster 1.5 dCi',s:'Renault Duster',c:5.5,u:'L',ins:500,m:320},
+  re_kol:{b:'Renault',n:'Koleos 2.5',s:'Renault Koleos',c:8.5,u:'L',ins:700,m:400},
+  // Subaru
+  su_xv:{b:'Subaru',n:'XV 2.0i',s:'Subaru XV',c:7.5,u:'L',ins:700,m:450},
+  su_for:{b:'Subaru',n:'Forester 2.0i',s:'Subaru Forester',c:7.8,u:'L',ins:750,m:480},
+  su_out:{b:'Subaru',n:'Outback 2.5i',s:'Subaru Outback',c:8.0,u:'L',ins:800,m:500},
+  // Suzuki
+  spresso:{b:'Suzuki',n:'S-Presso 1.0 GL',s:'Suzuki S-Presso',c:4.9,u:'L',ins:380,m:220},
+  swift:{b:'Suzuki',n:'Swift 1.2 GL',s:'Suzuki Swift',c:5.0,u:'L',ins:450,m:250},
+  sz_bal:{b:'Suzuki',n:'Baleno 1.5 GL',s:'Suzuki Baleno',c:5.2,u:'L',ins:450,m:250},
+  sz_vit:{b:'Suzuki',n:'Vitara 1.4T',s:'Suzuki Vitara',c:6.0,u:'L',ins:550,m:320},
+  sz_jim:{b:'Suzuki',n:'Jimny 1.5 GLX',s:'Suzuki Jimny',c:7.0,u:'L',ins:600,m:350},
+  sz_gv:{b:'Suzuki',n:'Grand Vitara 1.5T',s:'Suzuki Grand Vitara',c:6.5,u:'L',ins:600,m:350},
+  // Toyota
+  agya:{b:'Toyota',n:'Agya 1.0',s:'Toyota Agya',c:4.8,u:'L',ins:400,m:230},
+  starlet:{b:'Toyota',n:'Starlet 1.5 Xs',s:'Toyota Starlet',c:5.8,u:'L',ins:480,m:270},
+  to_yc:{b:'Toyota',n:'Yaris Cross 1.5',s:'Toyota Yaris Cross',c:5.8,u:'L',ins:550,m:300},
+  corolla:{b:'Toyota',n:'Corolla 1.8 Xs',s:'Toyota Corolla',c:6.5,u:'L',ins:650,m:350},
+  urban_cruiser:{b:'Toyota',n:'Urban Cruiser 1.5 Xs',s:'Toyota Urban Cruiser',c:6.2,u:'L',ins:560,m:320},
+  corolla_cross:{b:'Toyota',n:'Corolla Cross 1.8 Xs',s:'Toyota Corolla Cross',c:6.8,u:'L',ins:650,m:350},
+  rav4:{b:'Toyota',n:'RAV4 2.0 GX',s:'Toyota RAV4',c:7.5,u:'L',ins:750,m:400},
+  fortuner24:{b:'Toyota',n:'Fortuner 2.4 GD-6',s:'Toyota Fortuner 2.4',c:8.5,u:'L',ins:900,m:500},
+  fortuner28:{b:'Toyota',n:'Fortuner 2.8 GD-6 4x4',s:'Toyota Fortuner 2.8',c:9.5,u:'L',ins:1000,m:550},
+  hilux24:{b:'Toyota',n:'Hilux 2.4 GD-6 SR',s:'Toyota Hilux 2.4',c:7.8,u:'L',ins:800,m:480},
+  hilux28:{b:'Toyota',n:'Hilux 2.8 GD-6',s:'Toyota Hilux 2.8',c:8.5,u:'L',ins:900,m:500},
+  to_lc300:{b:'Toyota',n:'Land Cruiser 300 3.3D',s:'Toyota LC300',c:9.5,u:'L',ins:1600,m:900},
+  gr86:{b:'Toyota',n:'GR86',s:'Toyota GR86',c:8.5,u:'L',ins:800,m:450},
+  gr_corolla:{b:'Toyota',n:'GR Corolla',s:'Toyota GR Corolla',c:8.8,u:'L',ins:900,m:500},
+  to_supra:{b:'Toyota',n:'GR Supra 3.0',s:'Toyota GR Supra',c:9.0,u:'L',ins:1300,m:700},
+  // Volkswagen
+  polo_tsi:{b:'Volkswagen',n:'Polo 1.0 TSI',s:'VW Polo TSI',c:5.5,u:'L',ins:550,m:300},
+  polo_gti:{b:'Volkswagen',n:'Polo GTI',s:'VW Polo GTI',c:6.5,u:'L',ins:700,m:400},
+  jetta:{b:'Volkswagen',n:'Jetta 1.4 TSI',s:'VW Jetta',c:6.0,u:'L',ins:600,m:350},
+  tcross:{b:'Volkswagen',n:'T-Cross 1.0 TSI',s:'VW T-Cross',c:5.8,u:'L',ins:550,m:320},
+  vw_troc:{b:'Volkswagen',n:'T-Roc 1.4 TSI',s:'VW T-Roc',c:6.8,u:'L',ins:700,m:400},
+  tiguan:{b:'Volkswagen',n:'Tiguan 1.4 TSI Life',s:'VW Tiguan',c:7.5,u:'L',ins:800,m:450},
+  vw_tigr:{b:'Volkswagen',n:'Tiguan R 2.0 TSI',s:'VW Tiguan R',c:8.5,u:'L',ins:1000,m:550},
+  vw_tour:{b:'Volkswagen',n:'Touareg 3.0 TDI',s:'VW Touareg',c:8.5,u:'L',ins:1300,m:750},
+  gti:{b:'Volkswagen',n:'Golf 8 GTI',s:'VW Golf GTI',c:7.5,u:'L',ins:900,m:500},
+  golf_r:{b:'Volkswagen',n:'Golf 8 R',s:'VW Golf R',c:8.0,u:'L',ins:1000,m:550},
+  vw_amar:{b:'Volkswagen',n:'Amarok 2.0 BiTDI',s:'VW Amarok',c:8.5,u:'L',ins:900,m:500},
+  // Volvo
+  vo_xc40:{b:'Volvo',n:'XC40 T4',s:'Volvo XC40',c:7.2,u:'L',ins:850,m:500},
+  xc60:{b:'Volvo',n:'XC60 T5',s:'Volvo XC60',c:8.2,u:'L',ins:1050,m:680},
+  vo_xc90:{b:'Volvo',n:'XC90 T6',s:'Volvo XC90',c:9.5,u:'L',ins:1300,m:750}
 };
+
 var EV={
   // BYD Dolphin Surf
   dolph_c:{b:'BYD Dolphin',n:'Surf Comfort',s:'Dolphin Comfort',f:'BYD Dolphin Surf Comfort',c:13.0,bat:30.08,rng:232,ins:1000,p:295000},
@@ -664,6 +944,71 @@ function hDist(){var s=g('ctD'),x=g('ctDX');x.style.display=s.value==='x'?'inlin
 function gDist(){var s=g('ctD');return s.value==='x'?(parseFloat(g('ctDX').value)||20):parseFloat(s.value)}
 function hSol(){var s=g('solS'),x=g('solX');x.style.display=s.value==='x'?'inline-block':'none';if(s.value==='x')x.focus();cc()}
 function gSol(){var s=g('solS');return s.value==='x'?(parseFloat(g('solX').value)||4):parseFloat(s.value)}
+
+function resetAll(){
+  // Reset dropdowns
+  g('iceS').selectedIndex=0;
+  g('evS').selectedIndex=0;
+  g('kmS').value='1000';
+  g('fuelS').value='23.50';g('fuelX').style.display='none';
+  g('eskS').value='3.50';g('eskX').style.display='none';
+  g('solS').value='0';g('solX').style.display='none';
+  g('ctD').value='20';g('ctDX').style.display='none';
+
+  // Reset search inputs
+  var inputs=document.querySelectorAll('.sd-input');
+  for(var i=0;i<inputs.length;i++) inputs[i].value='';
+
+  // Reset ICE card
+  g('hIce').textContent='Your Car';g('hEv').textContent='Select EV';
+  g('iceBrand').textContent='—';g('iceName').textContent='Select a vehicle';
+  g('iceTotal').textContent='—';g('iceCons').textContent='—';
+  g('iceFU').textContent='—';g('iceFC').textContent='—';
+  g('iceI').textContent='—';g('iceM').textContent='—';
+
+  // Reset EV cards
+  g('eEB').textContent='—';g('eEN').textContent='Select an EV — Eskom';
+  g('eskT').textContent='—';g('eEC').textContent='—';
+  g('eEU').textContent='—';g('eEK').textContent='—';g('eEI').textContent='—';
+  g('eSB').textContent='—';g('eSN').textContent='Select an EV — Solar';
+  g('solT').textContent='—';g('eSC').textContent='—';
+  g('eSU').textContent='—';g('eSI').textContent='—';
+
+  // Reset table
+  g('th1').textContent='—';g('th2').textContent='—';g('th3').textContent='—';
+  g('t1f').textContent='';g('t2f').textContent='';
+  g('t1i').textContent='';g('t2i').textContent='';g('t3i').textContent='';
+  g('t1m').textContent='';
+  g('t1t').textContent='';g('t2t').textContent='';g('t3t').textContent='';
+  g('s2').textContent='';g('s3').textContent='';
+  g('a2').textContent='';g('a3').textContent='';
+  g('sv1').textContent='Saving vs —';g('sv2').textContent='Annual saving';
+
+  // Reset bars
+  g('bl1').textContent='—';g('bl2').textContent='—';g('bl3').textContent='—';
+  g('b1').style.width='0%';g('bv1').textContent='';
+  g('b2').style.width='0%';g('bv2').textContent='';
+  g('b3').style.width='0%';g('bv3').textContent='';
+
+  // Reset charge section
+  g('ctT').textContent='Charge Time Calculator';
+  g('ctE').textContent='—';
+  g('btT').textContent='—';g('btR').textContent='—';
+  g('btRm').textContent='—';g('btP').textContent='—';g('btK').textContent='—';
+  g('gF').style.width='0%';g('gP').textContent='—';g('gP').style.color='#4a6a90';
+  g('gL').textContent='Select an EV';
+
+  // Reset charge table
+  var amps=[10,15,32];
+  for(var i=0;i<amps.length;i++){
+    var a=amps[i];
+    g('ce'+a).textContent='';g('cs'+a).textContent='';
+    g('cc'+a).textContent='';g('cf'+a).textContent='';
+  }
+
+  // Reset pills
+  g('pIns').textContent='R600';g('pEvIns').textContent='R1,000';g('pMnt').textContent='R500/mo';
+}
 
 function calc(){
   var iceKey=g('iceS').value;
@@ -793,12 +1138,117 @@ function cc(){
 }
 
 window.onload=function(){
+  initSearch('iceS','🚗');
+  initSearch('evS','⚡');
   calc();
   cc();
   var m={name:'EV vs ICE',short_name:'EV vs ICE',start_url:'.',display:'standalone',background_color:'#101a30',theme_color:'#101a30',icons:[{src:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23101a30' width='100' height='100' rx='20'/%3E%3Ctext y='62' x='50' text-anchor='middle' font-size='50'%3E⚡%3C/text%3E%3C/svg%3E",sizes:'512x512',type:'image/svg+xml',purpose:'any'}]};
   var b=new Blob([JSON.stringify(m)],{type:'application/json'});
   g('manifest-link').href=URL.createObjectURL(b);
 };
+
+function initSearch(selId,icon){
+  var sel=g(selId);
+  var pill=sel.parentNode;
+  sel.style.display='none';
+
+  // Remove the emoji text node
+  for(var i=0;i<pill.childNodes.length;i++){
+    var nd=pill.childNodes[i];
+    if(nd.nodeType===3 && nd.textContent.trim().length>0){
+      nd.textContent='';break;
+    }
+  }
+
+  var wrap=document.createElement('div');
+  wrap.className='sd';
+
+  var inp=document.createElement('input');
+  inp.type='text';inp.className='sd-input';
+  inp.placeholder=icon+' '+sel.options[0].textContent;
+  inp.setAttribute('autocomplete','off');
+  inp.setAttribute('autocorrect','off');
+  inp.setAttribute('autocapitalize','off');
+  inp.setAttribute('spellcheck','false');
+
+  var arrow=document.createElement('span');
+  arrow.className='sd-arrow';arrow.textContent='▼';
+
+  var list=document.createElement('div');
+  list.className='sd-list';
+
+  // Build list from select optgroups
+  var opts=sel.querySelectorAll('optgroup');
+  var allItems=[];
+  for(var oi=0;oi<opts.length;oi++){
+    var og=opts[oi];
+    var grp=document.createElement('div');
+    grp.className='sd-grp';grp.textContent=og.label;
+    grp.setAttribute('data-grp',oi);
+    list.appendChild(grp);
+    var children=og.querySelectorAll('option');
+    for(var ci=0;ci<children.length;ci++){
+      var op=children[ci];
+      var item=document.createElement('div');
+      item.className='sd-opt';
+      item.textContent=op.textContent;
+      item.setAttribute('data-val',op.value);
+      item.setAttribute('data-grp',oi);
+      item.addEventListener('click',function(s,i,l){return function(){
+        s.value=this.getAttribute('data-val');
+        i.value=this.textContent;
+        l.classList.remove('open');
+        s.dispatchEvent(new Event('change'));
+      }}(sel,inp,list));
+      list.appendChild(item);
+      allItems.push({el:item,text:op.textContent.toLowerCase(),grp:oi});
+    }
+  }
+
+  var noResult=document.createElement('div');
+  noResult.className='sd-none';noResult.textContent='No matches found';
+  noResult.style.display='none';
+  list.appendChild(noResult);
+
+  // Search filter
+  inp.addEventListener('input',function(){
+    var q=inp.value.toLowerCase();
+    var grpHasMatch={};
+    var anyMatch=false;
+    for(var i=0;i<allItems.length;i++){
+      var match=!q||allItems[i].text.indexOf(q)!==-1;
+      allItems[i].el.className=match?'sd-opt':'sd-opt hide';
+      if(match){grpHasMatch[allItems[i].grp]=true;anyMatch=true;}
+    }
+    var grps=list.querySelectorAll('.sd-grp');
+    for(var gi=0;gi<grps.length;gi++){
+      grps[gi].className=grpHasMatch[grps[gi].getAttribute('data-grp')]?'sd-grp':'sd-grp hide';
+    }
+    noResult.style.display=anyMatch?'none':'block';
+    if(!list.classList.contains('open'))list.classList.add('open');
+  });
+
+  inp.addEventListener('focus',function(){list.classList.add('open')});
+
+  // Close on outside click
+  document.addEventListener('click',function(e){
+    if(!wrap.contains(e.target)){
+      list.classList.remove('open');
+      // Reset input if no valid selection
+      if(sel.value){
+        var selOpt=sel.options[sel.selectedIndex];
+        if(selOpt)inp.value=selOpt.textContent;
+      } else {
+        inp.value='';
+      }
+    }
+  });
+
+  wrap.appendChild(inp);
+  wrap.appendChild(arrow);
+  wrap.appendChild(list);
+  pill.appendChild(wrap);
+}
 </script>
 </body>
 </html>
