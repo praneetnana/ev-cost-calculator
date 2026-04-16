@@ -1120,7 +1120,7 @@ function cc(){
   for(var i=0;i<amps.length;i++){
     var a=amps[i];
     g('ce'+a).textContent=fT(en/ePow[a]);
-    g('cs'+a).textContent=fT(en/sPow[a]);
+    g('cs'+a).textContent=sCap>0?fT(en/sPow[a]):'No Solar';
     g('cc'+a).textContent='R'+eCost.toFixed(2);
     g('cf'+a).textContent=v?('R'+fCost.toFixed(2)):'—';
   }
