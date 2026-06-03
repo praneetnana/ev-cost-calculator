@@ -534,6 +534,12 @@ body{
         <option value="ic_v23_4">V23 4WD</option>
         <option value="ic_v23_2">V23 2WD</option>
       </optgroup>
+      <optgroup label="🇨🇳 Geely">
+        <option value="ge_e2a">E2 Aspire</option>
+        <option value="ge_e2x">E2 Apex</option>
+        <option value="ge_e5">Galaxy E5 Standard</option>
+        <option value="ge_e5lr">Galaxy E5 Long Range</option>
+      </optgroup>
     </select></div>
     <div class="p">📍 <select id="kmS" onchange="calc()">
       <option value="200">200 km/mo</option><option value="400">400 km/mo</option>
@@ -944,7 +950,12 @@ var EV={
   ic_03t_4:{b:'iCAUR',n:'03T 4WD',s:'iCAUR 03T 4WD',f:'iCAUR 03T 4WD',c:19.9,bat:69.77,rng:351,ins:1200,p:699900},
   ic_03t_2:{b:'iCAUR',n:'03T 2WD',s:'iCAUR 03T 2WD',f:'iCAUR 03T 2WD',c:18.3,bat:65.69,rng:359,ins:1200,p:639900},
   ic_v23_4:{b:'iCAUR',n:'V23 4WD',s:'iCAUR V23 4WD',f:'iCAUR V23 4WD',c:22,bat:81.8,rng:372,ins:1200,p:669900},
-  ic_v23_2:{b:'iCAUR',n:'V23 2WD',s:'iCAUR V23 2WD',f:'iCAUR V23 2WD',c:20,bat:59.93,rng:300,ins:1200,p:519900}
+  ic_v23_2:{b:'iCAUR',n:'V23 2WD',s:'iCAUR V23 2WD',f:'iCAUR V23 2WD',c:20,bat:59.93,rng:300,ins:1200,p:519900},
+  // Geely
+  ge_e2a:{b:'Geely',n:'E2 Aspire',s:'Geely E2 Aspire',f:'Geely E2 Aspire',c:15.2,bat:39.4,rng:325,ins:800,p:350000},
+  ge_e2x:{b:'Geely',n:'E2 Apex',s:'Geely E2 Apex',f:'Geely E2 Apex',c:15.2,bat:39.4,rng:325,ins:800,p:400000},
+  ge_e5:{b:'Geely',n:'Galaxy E5 Standard',s:'Geely E5',f:'Geely Galaxy E5 Standard',c:14.0,bat:49.52,rng:354,ins:900,p:480000},
+  ge_e5lr:{b:'Geely',n:'Galaxy E5 Long Range',s:'Geely E5 LR',f:'Geely Galaxy E5 Long Range',c:14.2,bat:60.22,rng:424,ins:900,p:550000}
 };
 
 function g(id){return document.getElementById(id)}
