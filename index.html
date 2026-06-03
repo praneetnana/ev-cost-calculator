@@ -14,81 +14,84 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{
   background:#0b1020;color:#8aa0c0;
-  font-family:'DM Sans',sans-serif;font-size:13px;
+  font-family:'DM Sans',sans-serif;font-size:14px;
   padding:0;min-height:100vh;
-  padding-top:env(safe-area-inset-top);
-  padding-bottom:env(safe-area-inset-bottom);
-  -webkit-text-size-adjust:100%;
 }
 .w{
-  max-width:720px;margin:0 auto;padding:14px;
+  max-width:1400px;margin:0 auto;padding:28px 36px;
   background:#101a30;min-height:100vh;
 }
 
 /* Header */
-.hdr{margin-bottom:18px}
-.tag{font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#3b82f6;margin-bottom:6px}
-.hdr h1{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1.5px;color:#e8edf5;line-height:1.1;margin-bottom:4px}
+.hdr{margin-bottom:24px}
+.tag{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#3b82f6;margin-bottom:6px}
+.hdr h1{font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:2px;color:#e8edf5;line-height:1.1;margin-bottom:4px}
 .hdr h1 .ic{color:#e8866a}
 .hdr h1 .ev{color:#6aabee}
-.hdr .sub{color:#6a80a0;font-size:11px}
+.hdr .sub{color:#6a80a0;font-size:13px}
 
 /* Pills / controls */
-.ctrls{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:18px}
+.ctrls{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px}
 .p{
   background:#162040;border:1px solid #243352;border-radius:16px;
-  padding:5px 10px;font-size:11px;color:#7a90b8;font-weight:500;
-  display:inline-flex;align-items:center;gap:4px;
+  padding:6px 12px;font-size:12px;color:#7a90b8;font-weight:500;
+  display:inline-flex;align-items:center;gap:5px;
 }
 .p span{color:#a8c0e0;font-weight:600}
 .p select{
-  background:none;border:0;outline:0;color:#a8c0e0;font-size:11px;font-weight:600;
+  background:none;border:0;outline:0;color:#a8c0e0;font-size:12px;font-weight:600;
   font-family:inherit;cursor:pointer;-webkit-appearance:none;appearance:none;
-  padding-right:12px;
+  padding-right:14px;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%235588cc'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right center;
 }
 .p select option{background:#162040;color:#a8c0e0}
 .p input[type=number]{
   background:none;border:0;border-bottom:1px solid #3b82f6;outline:0;
-  color:#a8c0e0;font-size:11px;font-weight:600;font-family:inherit;
-  width:50px;-moz-appearance:textfield;
+  color:#a8c0e0;font-size:12px;font-weight:600;font-family:inherit;
+  width:55px;-moz-appearance:textfield;
 }
 .p input::-webkit-outer-spin-button,.p input::-webkit-inner-spin-button{-webkit-appearance:none}
 
 /* Searchable dropdown */
 .sd{position:relative;display:inline-flex;align-items:center}
 .sd-input{
-  background:none;border:0;outline:0;color:#a8c0e0;font-size:11px;font-weight:600;
-  font-family:inherit;cursor:pointer;width:180px;padding:2px 0;
+  background:none;border:0;outline:0;color:#a8c0e0;font-size:12px;font-weight:600;
+  font-family:inherit;cursor:pointer;width:220px;padding:2px 0;
 }
 .sd-input::placeholder{color:#5a7a9a}
 .sd-arrow{color:#5588cc;font-size:8px;margin-left:4px;pointer-events:none}
 .sd-list{
-  display:none;position:absolute;top:100%;left:-10px;margin-top:6px;
+  display:none;position:absolute;top:100%;left:-12px;margin-top:6px;
   background:#141e38;border:1px solid #243352;border-radius:10px;
-  width:280px;max-height:320px;overflow-y:auto;z-index:100;
+  width:320px;max-height:400px;overflow-y:auto;z-index:100;
   box-shadow:0 8px 24px rgba(0,0,0,0.4);
-  -webkit-overflow-scrolling:touch;
 }
 .sd-list.open{display:block}
-.sd-grp{padding:6px 12px 3px;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#4a6a90;position:sticky;top:0;background:#141e38}
+.sd-grp{padding:6px 14px 3px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#4a6a90;position:sticky;top:0;background:#141e38}
 .sd-opt{
-  padding:8px 12px;font-size:12px;color:#a8c0e0;cursor:pointer;
+  padding:9px 14px;font-size:13px;color:#a8c0e0;cursor:pointer;
   border-bottom:1px solid #1a2640;
 }
 .sd-opt:last-child{border:0}
 .sd-opt:hover,.sd-opt.hl{background:#1a2640;color:#e8edf5}
 .sd-opt.hide{display:none}
 .sd-grp.hide{display:none}
-.sd-none{padding:12px;font-size:11px;color:#4a6a90;text-align:center}
+.sd-none{padding:14px;font-size:12px;color:#4a6a90;text-align:center}
+
+/* 2-column dashboard */
+.dash{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.col{}
 
 /* Section */
-.st{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#4a6a90;margin:18px 0 10px}
+.st{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4a6a90;margin:0 0 12px}
+.st+.st,.sec+.sec{margin-top:24px}
+.sec{margin-bottom:24px}
 
-/* Vehicle cards */
-.cards{display:flex;flex-direction:column;gap:8px;margin-bottom:4px}
-.vc{background:#141e38;border:1px solid #243352;border-radius:12px;padding:14px;position:relative;overflow:hidden}
+/* Vehicle cards — 3 across on laptop */
+.cards{display:flex;flex-direction:row;gap:10px;margin-bottom:0}
+.cards .vc{flex:1}
+.vc{background:#141e38;border:1px solid #243352;border-radius:12px;padding:16px;position:relative;overflow:hidden}
 .vc.win{border-color:#16a34a55;background:linear-gradient(135deg,#141e38,#102820)}
 .vc.win::after{
   content:'BEST VALUE';position:absolute;top:8px;right:-20px;
@@ -97,143 +100,99 @@ body{
 }
 .vc-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
 .vc-brand{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase}
-.vc-name{font-size:13px;font-weight:600;color:#c8d8f0}
-.vc-total{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px}
+.vc-name{font-size:14px;font-weight:600;color:#c8d8f0}
+.vc-total{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:1px}
 .mb{color:#c0794a}.mt{color:#e8866a}
 .eb{color:#4a90d9}.et{color:#6aabee}
 .sb{color:#3aaa6a}.st2{color:#4acc80}
-.rows{display:grid;grid-template-columns:1fr 1fr;gap:2px 12px}
-.vr{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #243352;font-size:11px}
+.rows{display:grid;grid-template-columns:1fr;gap:0}
+.vr{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #243352;font-size:12px}
 .vr:last-child{border:0}
 .vr-l{color:#5a7a9a;font-weight:500}
 .vr-v{color:#8aabcc;font-weight:600}
 
 /* Tables */
-.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:4px;border-radius:10px;background:#141e38;border:1px solid #243352}
-.tb{width:100%;border-collapse:collapse;min-width:360px}
+.tw{overflow-x:auto;margin-bottom:0;border-radius:10px;background:#141e38;border:1px solid #243352}
+.tb{width:100%;border-collapse:collapse}
 .tb th{
-  font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
-  color:#4a6a90;text-align:right;padding:10px;border-bottom:2px solid #243352;background:#141e38;
+  font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  color:#4a6a90;text-align:right;padding:12px;border-bottom:2px solid #243352;background:#141e38;
 }
 .tb th:first-child{text-align:left}
-.tb td{padding:10px;font-size:12px;text-align:right;color:#7a90b0;border-bottom:1px solid #1e2d4d}
-.tb td:first-child{text-align:left;color:#6a80a0;font-size:11px;font-weight:500}
-.tb tr.tot td{font-weight:700;font-size:13px;border-top:2px solid #243352;border-bottom:0;padding-top:12px}
+.tb td{padding:12px;font-size:13px;text-align:right;color:#7a90b0;border-bottom:1px solid #1e2d4d}
+.tb td:first-child{text-align:left;color:#6a80a0;font-size:12px;font-weight:500}
+.tb tr.tot td{font-weight:700;font-size:14px;border-top:2px solid #243352;border-bottom:0;padding-top:14px}
 .tb tr.tot td:first-child{color:#8aabcc}
-.tb .sav td{font-size:11px;border-bottom:0}
+.tb .sav td{font-size:12px;border-bottom:0}
 .tb .sav-l{color:#4a6a90;font-style:italic}
 .mv{color:#e8866a !important}.ev2{color:#6aabee !important}.sv{color:#4acc80 !important}
 
 /* Bars */
-.bars{margin-bottom:4px}
-.br{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-.br-l{font-size:11px;color:#6a80a0;font-weight:500;width:100px;flex-shrink:0}
-.br-t{flex:1;background:#1a2640;border-radius:4px;height:20px;overflow:hidden}
-.br-f{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:8px;transition:width .3s}
-.br-f span{font-size:10px;font-weight:700;color:#fff;white-space:nowrap}
+.bars{margin-bottom:0}
+.br{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.br-l{font-size:12px;color:#6a80a0;font-weight:500;width:160px;flex-shrink:0}
+.br-t{flex:1;background:#1a2640;border-radius:4px;height:24px;overflow:hidden}
+.br-f{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:10px;transition:width .3s}
+.br-f span{font-size:11px;font-weight:700;color:#fff;white-space:nowrap}
 
 /* Battery section */
-.bg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
-.bb{background:#141e38;border:1px solid #243352;border-radius:10px;padding:10px}
-.bb .lbl{font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#4a6a90;margin-bottom:3px}
-.bb .val{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;line-height:1.1}
-.bb .note{font-size:10px;color:#4a6a90;margin-top:2px}
+.bg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px}
+.bb{background:#141e38;border:1px solid #243352;border-radius:10px;padding:12px}
+.bb .lbl{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#4a6a90;margin-bottom:3px}
+.bb .val{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1px;line-height:1.1}
+.bb .note{font-size:11px;color:#4a6a90;margin-top:2px}
 
 /* Gauge */
-.gw{background:#141e38;border:1px solid #243352;border-radius:10px;padding:12px 14px;margin-bottom:10px;display:flex;align-items:center;gap:14px}
-.ga{position:relative;flex-shrink:0;width:160px;height:44px}
+.gw{background:#141e38;border:1px solid #243352;border-radius:10px;padding:14px 18px;margin-bottom:12px;display:flex;align-items:center;gap:18px}
+.ga{position:relative;flex-shrink:0;width:280px;height:56px}
 .ga-body{position:absolute;inset:0;border:2px solid #243352;border-radius:8px;overflow:hidden;background:#0b1020}
 .ga-fill{height:100%;border-radius:6px;transition:width .4s,background .4s;position:relative}
 .ga-segs{position:absolute;inset:0;display:flex}
 .ga-segs div{flex:1;border-right:1px solid rgba(20,30,50,0.5)}
 .ga-segs div:last-child{border:0}
 .ga-nub{position:absolute;right:-6px;top:50%;transform:translateY(-50%);width:6px;height:18px;background:#243352;border-radius:0 3px 3px 0}
-.ga-pct{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:1px;line-height:1}
-.ga-lbl{font-size:11px;color:#5a7a9a;margin-top:1px}
+.ga-pct{font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:1px;line-height:1}
+.ga-lbl{font-size:12px;color:#5a7a9a;margin-top:2px}
 
 /* Charge table */
-.cw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:10px;border-radius:10px;background:#141e38;border:1px solid #243352}
-.ct2{width:100%;border-collapse:collapse;min-width:440px}
+.cw{overflow-x:auto;margin-bottom:12px;border-radius:10px;background:#141e38;border:1px solid #243352}
+.ct2{width:100%;border-collapse:collapse}
 .ct2 th{
-  font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
-  color:#4a6a90;text-align:center;padding:8px 6px;border-bottom:2px solid #243352;
+  font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  color:#4a6a90;text-align:center;padding:10px 8px;border-bottom:2px solid #243352;
   white-space:nowrap;background:#141e38;
 }
 .ct2 th:first-child{text-align:left}
-.ct2 td{padding:8px 6px;font-size:11px;text-align:center;color:#7a90b0;border-bottom:1px solid #1e2d4d}
+.ct2 td{padding:10px 8px;font-size:12px;text-align:center;color:#7a90b0;border-bottom:1px solid #1e2d4d}
 .ct2 td:first-child{text-align:left;color:#6a80a0;font-weight:600}
 .ct2 tr:last-child td{border-bottom:0}
 .ec{font-weight:600;color:#8aabcc}
 .sc{color:#4acc80 !important;font-weight:600}
 
 /* Info */
-.info{background:#0e1628;border:1px solid #243352;border-radius:10px;padding:10px 12px;margin-bottom:18px;font-size:10px;color:#5a7a9a;line-height:1.6}
+.info{background:#0e1628;border:1px solid #243352;border-radius:10px;padding:12px 16px;margin-bottom:0;font-size:11px;color:#5a7a9a;line-height:1.6}
 .info strong{color:#7a9abe}
 
 /* Footer */
-.foot{border-top:1px solid #243352;padding-top:12px;display:flex;justify-content:space-between;align-items:center}
-.foot-n{font-size:10px;color:#3a5070;line-height:1.5}
+.foot{border-top:1px solid #243352;padding-top:14px;margin-top:24px;display:flex;justify-content:space-between;align-items:center}
+.foot-n{font-size:11px;color:#3a5070;line-height:1.5}
 .foot-b{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#243352}
-
-/* Tablet (iPad) */
-@media(min-width:600px){
-  .w{padding:24px 28px}
-  .hdr h1{font-size:36px}
-  .hdr .sub{font-size:13px}
-  .tag{font-size:11px;letter-spacing:3px}
-  .cards{flex-direction:row}.cards .vc{flex:1}
-  .rows{grid-template-columns:1fr}
-  .vc-name{font-size:15px}
-  .vc-total{font-size:32px}
-  .vr{font-size:12px;padding:5px 0}
-  .st{font-size:10px;letter-spacing:3px;margin:24px 0 12px}
-  .p{font-size:12px;padding:6px 12px}
-  .p select{font-size:12px}
-  .tb th{font-size:10px;padding:12px}
-  .tb td{padding:12px;font-size:13px}
-  .tb tr.tot td{font-size:15px}
-  .br-l{font-size:12px;width:140px}
-  .br-t{height:24px}
-  .br-f span{font-size:11px}
-  .bg{gap:12px}
-  .bb{padding:14px}
-  .bb .lbl{font-size:9px}
-  .bb .val{font-size:26px}
-  .bb .note{font-size:11px}
-  .ga{width:240px;height:56px}
-  .ga-pct{font-size:38px}
-  .ga-lbl{font-size:12px}
-  .gw{padding:16px 20px;gap:18px}
-  .ct2 th{font-size:9px;padding:10px 8px}
-  .ct2 td{padding:10px 8px;font-size:12px}
-  .info{font-size:11px;padding:14px 16px}
-  .foot-n{font-size:11px}
-}
-
-/* Large tablet / desktop */
-@media(min-width:900px){
-  .w{padding:32px 40px;max-width:860px}
-  .hdr h1{font-size:40px}
-  .vc-total{font-size:36px}
-  .bg{grid-template-columns:1fr 1fr 1fr;gap:14px}
-  .ga{width:280px;height:60px}
-  .ga-pct{font-size:44px}
-}
 </style>
 </head>
 <body>
 <div class="w">
 
   <!-- Hero Header -->
-  <div style="text-align:center;padding:8px 0 18px;">
-    <div style="font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#243352;margin-bottom:6px;">Built by Praneet Nana</div>
-    <div style="font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:3px;color:#e8edf5;line-height:1;">
+  <div style="text-align:center;padding:10px 0 22px;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#243352;margin-bottom:8px;">Built by Praneet Nana</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:4px;color:#e8edf5;line-height:1;">
       <span style="color:#4acc80">⚡</span> EV <span style="color:#3b82f6">vs</span> ICE <span style="color:#4acc80">⚡</span>
     </div>
-    <div style="font-size:11px;color:#4a6a90;margin-top:6px;line-height:1.4;">
-      Should you go electric? Compare the <span style="color:#4acc80;font-weight:600">real running costs</span> of electric vehicles<br>against petrol &amp; diesel cars — tailored for <span style="color:#6aabee;font-weight:600">South Africa</span>
+    <div style="font-size:13px;color:#4a6a90;margin-top:8px;line-height:1.5;">
+      Should you go electric? Compare the <span style="color:#4acc80;font-weight:600">real running costs</span> of electric vehicles
+      against petrol &amp; diesel cars — tailored for <span style="color:#6aabee;font-weight:600">South Africa</span>
     </div>
-    <div style="width:60px;height:2px;background:linear-gradient(90deg,#4acc80,#3b82f6);margin:12px auto 0;border-radius:2px;"></div>
+    <div style="width:80px;height:2px;background:linear-gradient(90deg,#4acc80,#3b82f6);margin:14px auto 0;border-radius:2px;"></div>
   </div>
 
   <div class="hdr">
@@ -242,7 +201,7 @@ body{
     <div class="sub">Monthly, 3-Year Costs &amp; Charge Time Calculator</div>
   </div>
 
-  <div style="background:#0e1628;border:1px solid #1e2d4d;border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:11px;color:#4a6a90;line-height:1.6;">
+  <div style="background:#0e1628;border:1px solid #1e2d4d;border-radius:10px;padding:12px 18px;margin-bottom:18px;font-size:12px;color:#4a6a90;line-height:1.6;">
     <strong style="color:#6aabee;">How to use:</strong> Select your <span style="color:#e8866a">ICE vehicle</span> and an <span style="color:#4acc80">electric vehicle</span> below, then adjust your monthly km, fuel price, electricity rate, and <span style="color:#4acc80">solar system size</span> to see a full running cost comparison.
   </div>
 
@@ -375,6 +334,7 @@ body{
         <option value="mb_glb">GLB 200</option>
         <option value="glc">GLC 220d</option>
         <option value="mb_gle">GLE 300d</option>
+        <option value="mb_e350">E350 Coupe (C207) (2010)</option>
         <option value="amg_a45">AMG A45 S</option>
         <option value="amg_c43">AMG C43</option>
         <option value="amg_c63">AMG C63 S</option>
@@ -527,6 +487,12 @@ body{
       <optgroup label="🔧 GWM">
         <option value="ora03">Ora 03</option>
       </optgroup>
+      <optgroup label="🚙 iCAUR">
+        <option value="ic_03t_4">03T 4WD</option>
+        <option value="ic_03t_2">03T 2WD</option>
+        <option value="ic_v23_4">V23 4WD</option>
+        <option value="ic_v23_2">V23 2WD</option>
+      </optgroup>
     </select></div>
     <div class="p">📍 <select id="kmS" onchange="calc()">
       <option value="200">200 km/mo</option><option value="400">400 km/mo</option>
@@ -611,7 +577,12 @@ body{
     </div>
   </div>
 
-  <div class="st">3-Year Cumulative (36 months)</div>
+  <!-- 2-Column Dashboard -->
+  <div class="dash">
+    <!-- LEFT COLUMN: Tables -->
+    <div class="col">
+      <div class="sec">
+        <div class="st">3-Year Cumulative (36 months)</div>
   <div class="tw">
     <table class="tb">
       <thead><tr><th>Cost Item</th><th id="th1">—</th><th id="th2">—</th><th id="th3">—</th></tr></thead>
@@ -626,7 +597,12 @@ body{
     </table>
   </div>
 
-  <div class="st">3-Year Running Cost</div>
+      </div>
+    </div>
+    <!-- RIGHT COLUMN: Bars + Charge Calculator -->
+    <div class="col">
+      <div class="sec">
+        <div class="st">3-Year Running Cost</div>
   <div class="bars">
     <div class="br"><div class="br-l" id="bl1">—</div><div class="br-t"><div class="br-f" id="b1" style="width:0%;background:linear-gradient(90deg,#c0402a,#e8866a)"><span id="bv1"></span></div></div></div>
     <div class="br"><div class="br-l" id="bl2">—</div><div class="br-t"><div class="br-f" id="b2" style="width:0%;background:linear-gradient(90deg,#1a60c0,#6aabee)"><span id="bv2"></span></div></div></div>
@@ -685,6 +661,9 @@ body{
   <div class="info" id="solInfo">
     ☀️ <strong>Solar:</strong> System output capped at usable inverter capacity. Solar charge time assumes direct solar-to-car charging at <strong style="color:#4acc80">R0/kWh</strong>. If charger draw exceeds solar output, charge rate is capped to solar capacity.
   </div>
+      </div>
+    </div>
+  </div><!-- end .dash -->
 
   <div class="foot">
     <div class="foot-n" id="fN"></div>
@@ -805,6 +784,7 @@ var ICE={
   mb_glb:{b:'Mercedes',n:'GLB 200',s:'Mercedes GLB',c:7.2,u:'L',ins:900,m:580},
   glc:{b:'Mercedes',n:'GLC 220d',s:'Mercedes GLC',c:6.8,u:'L',ins:1100,m:700},
   mb_gle:{b:'Mercedes',n:'GLE 300d',s:'Mercedes GLE',c:7.8,u:'L',ins:1400,m:800},
+  mb_e350:{b:'Mercedes',n:'E350 Coupe (C207) (2010)',s:'Mercedes E350 Coupe',c:12.0,u:'L',ins:700,m:600},
   amg_a45:{b:'Mercedes',n:'AMG A45 S',s:'Mercedes AMG A45 S',c:9.0,u:'L',ins:1300,m:750},
   amg_c43:{b:'Mercedes',n:'AMG C43',s:'Mercedes AMG C43',c:9.5,u:'L',ins:1300,m:750},
   amg_c63:{b:'Mercedes',n:'AMG C63 S',s:'Mercedes AMG C63',c:11.0,u:'L',ins:1800,m:1000},
@@ -931,7 +911,12 @@ var EV={
   q4:{b:'Audi',n:'Q4 e-tron 40',s:'Audi Q4 e-tron',f:'Audi Q4 e-tron 40',c:14.8,bat:77,rng:520,ins:2000,p:1050000},
   q8e:{b:'Audi',n:'Q8 e-tron 55',s:'Audi Q8 e-tron',f:'Audi Q8 e-tron 55',c:19.6,bat:114,rng:582,ins:3000,p:1800000},
   // GWM
-  ora03:{b:'GWM',n:'Ora 03',s:'GWM Ora 03',f:'GWM Ora 03',c:15.5,bat:48,rng:310,ins:800,p:450000}
+  ora03:{b:'GWM',n:'Ora 03',s:'GWM Ora 03',f:'GWM Ora 03',c:15.5,bat:48,rng:310,ins:800,p:450000},
+  // iCAUR
+  ic_03t_4:{b:'iCAUR',n:'03T 4WD',s:'iCAUR 03T 4WD',f:'iCAUR 03T 4WD',c:19.9,bat:69.77,rng:351,ins:1200,p:699900},
+  ic_03t_2:{b:'iCAUR',n:'03T 2WD',s:'iCAUR 03T 2WD',f:'iCAUR 03T 2WD',c:18.3,bat:65.69,rng:359,ins:1200,p:639900},
+  ic_v23_4:{b:'iCAUR',n:'V23 4WD',s:'iCAUR V23 4WD',f:'iCAUR V23 4WD',c:22,bat:81.8,rng:372,ins:1200,p:669900},
+  ic_v23_2:{b:'iCAUR',n:'V23 2WD',s:'iCAUR V23 2WD',f:'iCAUR V23 2WD',c:20,bat:59.93,rng:300,ins:1200,p:519900}
 };
 
 function g(id){return document.getElementById(id)}
@@ -948,7 +933,6 @@ function hSol(){var s=g('solS'),x=g('solX');x.style.display=s.value==='x'?'inlin
 function gSol(){var s=g('solS');return s.value==='x'?(parseFloat(g('solX').value)||4):parseFloat(s.value)}
 
 function resetAll(){
-  // Reset dropdowns
   g('iceS').selectedIndex=0;
   g('evS').selectedIndex=0;
   g('kmS').value='1000';
@@ -956,27 +940,19 @@ function resetAll(){
   g('eskS').value='3.50';g('eskX').style.display='none';
   g('solS').value='0';g('solX').style.display='none';
   g('ctD').value='20';g('ctDX').style.display='none';
-
-  // Reset search inputs
   var inputs=document.querySelectorAll('.sd-input');
   for(var i=0;i<inputs.length;i++) inputs[i].value='';
-
-  // Reset ICE card
   g('hIce').textContent='Your Car';g('hEv').textContent='Select EV';
   g('iceBrand').textContent='—';g('iceName').textContent='Select a vehicle';
   g('iceTotal').textContent='—';g('iceCons').textContent='—';
   g('iceFU').textContent='—';g('iceFC').textContent='—';
   g('iceI').textContent='—';g('iceM').textContent='—';
-
-  // Reset EV cards
   g('eEB').textContent='—';g('eEN').textContent='Select an EV — Eskom';
   g('eskT').textContent='—';g('eEC').textContent='—';
   g('eEU').textContent='—';g('eEK').textContent='—';g('eEI').textContent='—';
   g('eSB').textContent='—';g('eSN').textContent='Select an EV — Solar';
   g('solT').textContent='—';g('eSC').textContent='—';
   g('eSU').textContent='—';g('eSI').textContent='—';
-
-  // Reset table
   g('th1').textContent='—';g('th2').textContent='—';g('th3').textContent='—';
   g('t1f').textContent='';g('t2f').textContent='';
   g('t1i').textContent='';g('t2i').textContent='';g('t3i').textContent='';
@@ -985,30 +961,22 @@ function resetAll(){
   g('s2').textContent='';g('s3').textContent='';
   g('a2').textContent='';g('a3').textContent='';
   g('sv1').textContent='Saving vs —';g('sv2').textContent='Annual saving';
-
-  // Reset bars
   g('bl1').textContent='—';g('bl2').textContent='—';g('bl3').textContent='—';
   g('b1').style.width='0%';g('bv1').textContent='';
   g('b2').style.width='0%';g('bv2').textContent='';
   g('b3').style.width='0%';g('bv3').textContent='';
-
-  // Reset charge section
   g('ctT').textContent='Charge Time Calculator';
   g('ctE').textContent='—';
   g('btT').textContent='—';g('btR').textContent='—';
   g('btRm').textContent='—';g('btP').textContent='—';g('btK').textContent='—';
   g('gF').style.width='0%';g('gP').textContent='—';g('gP').style.color='#4a6a90';
   g('gL').textContent='Select an EV';
-
-  // Reset charge table
   var amps=[10,15,32];
   for(var i=0;i<amps.length;i++){
     var a=amps[i];
     g('ce'+a).textContent='';g('cs'+a).textContent='';
     g('cc'+a).textContent='';g('cf'+a).textContent='';
   }
-
-  // Reset pills
   g('pIns').textContent='R600';g('pEvIns').textContent='R1,000';g('pMnt').textContent='R500/mo';
 }
 
@@ -1086,7 +1054,7 @@ function calc(){
   g('b3').style.width=(sT3/mx*100).toFixed(1)+'%';g('bv3').textContent=R(sT3);
 
   g('ctFH').textContent='⛽ '+v.s;
-  g('fN').innerHTML=v.s+' maint. R'+v.m+'/mo. '+e.s+' maint. R0.<br>Eskom R'+esk.toFixed(2)+'/kWh · Solar R0 · '+e.s+' '+R(e.p);
+  g('fN').innerHTML=v.s+' maint. R'+v.m+'/mo. '+e.s+' maint. R0.<br>Eskom R'+esk.toFixed(2)+'/kWh · Solar R0 · '+e.s+' '+(e.p>0?R(e.p):'Price TBC');
 
   cc();
 }
@@ -1154,7 +1122,6 @@ function initSearch(selId,icon){
   var pill=sel.parentNode;
   sel.style.display='none';
 
-  // Remove the emoji text node
   for(var i=0;i<pill.childNodes.length;i++){
     var nd=pill.childNodes[i];
     if(nd.nodeType===3 && nd.textContent.trim().length>0){
@@ -1179,7 +1146,6 @@ function initSearch(selId,icon){
   var list=document.createElement('div');
   list.className='sd-list';
 
-  // Build list from select optgroups
   var opts=sel.querySelectorAll('optgroup');
   var allItems=[];
   for(var oi=0;oi<opts.length;oi++){
@@ -1212,7 +1178,6 @@ function initSearch(selId,icon){
   noResult.style.display='none';
   list.appendChild(noResult);
 
-  // Search filter
   inp.addEventListener('input',function(){
     var q=inp.value.toLowerCase();
     var grpHasMatch={};
@@ -1232,11 +1197,9 @@ function initSearch(selId,icon){
 
   inp.addEventListener('focus',function(){list.classList.add('open')});
 
-  // Close on outside click
   document.addEventListener('click',function(e){
     if(!wrap.contains(e.target)){
       list.classList.remove('open');
-      // Reset input if no valid selection
       if(sel.value){
         var selOpt=sel.options[sel.selectedIndex];
         if(selOpt)inp.value=selOpt.textContent;
