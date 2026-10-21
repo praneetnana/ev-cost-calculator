@@ -433,6 +433,16 @@ body{
       </optgroup>
       <optgroup label="🇯🇵 Toyota">
         <option value="agya">Agya 1.0</option>
+        <option value="to_yr06_10">Yaris 1.0 T1 (2006)</option>
+        <option value="to_yr06_13">Yaris 1.3 T3 (2006)</option>
+        <option value="to_yr11_10">Yaris 1.0 Xi (2011)</option>
+        <option value="to_yr11_13">Yaris 1.3 Xi (2011)</option>
+        <option value="to_yr14_10">Yaris 1.0 (2014)</option>
+        <option value="to_yr14_13">Yaris 1.3 (2014)</option>
+        <option value="to_yr14_15">Yaris 1.5 Xs (2014)</option>
+        <option value="to_yr14_15c">Yaris 1.5 Cross (2014)</option>
+        <option value="to_yr20_xi">Yaris 1.5 Xi (2020)</option>
+        <option value="to_yr20_xs">Yaris 1.5 Xs (2020)</option>
         <option value="starlet">Starlet 1.5 Xs</option>
         <option value="to_yc">Yaris Cross 1.5</option>
         <option value="urban_cruiser">Urban Cruiser 1.5 Xs</option>
@@ -539,6 +549,25 @@ body{
         <option value="ge_e2x">E2 Apex</option>
         <option value="ge_e5">Galaxy E5 Standard</option>
         <option value="ge_e5lr">Galaxy E5 Long Range</option>
+      </optgroup>
+      <optgroup label="🇬🇧 MG">
+        <option value="mg4_sr">MG4 Standard</option>
+        <option value="mg4_lr">MG4 Long Range</option>
+        <option value="mg4_xp">MG4 XPower AWD</option>
+        <option value="mgzs_sr">ZS EV Standard</option>
+        <option value="mgzs_lr">ZS EV Long Range</option>
+      </optgroup>
+      <optgroup label="🇨🇳 Omoda (Chery)">
+        <option value="omoda_e5">E5 Electric</option>
+      </optgroup>
+      <optgroup label="🇨🇳 JAC">
+        <option value="jac_e">e-JS1</option>
+      </optgroup>
+      <optgroup label="🇨🇳 Changan">
+        <option value="ch_uni">Uni-V EV</option>
+      </optgroup>
+      <optgroup label="🇨🇳 Steller">
+        <option value="st_3e">3e</option>
       </optgroup>
     </select></div>
     <div class="p">📍 <select id="kmS" onchange="calc()">
@@ -866,6 +895,16 @@ var ICE={
   sz_gv:{b:'Suzuki',n:'Grand Vitara 1.5T',s:'Suzuki Grand Vitara',c:6.5,u:'L',ins:600,m:350},
   // Toyota
   agya:{b:'Toyota',n:'Agya 1.0',s:'Toyota Agya',c:4.8,u:'L',ins:400,m:230},
+  to_yr06_10:{b:'Toyota',n:'Yaris 1.0 T1 (2006)',s:'Toyota Yaris 1.0',c:5.8,u:'L',ins:300,m:250},
+  to_yr06_13:{b:'Toyota',n:'Yaris 1.3 T3 (2006)',s:'Toyota Yaris 1.3',c:6.3,u:'L',ins:320,m:250},
+  to_yr11_10:{b:'Toyota',n:'Yaris 1.0 Xi (2011)',s:'Toyota Yaris 1.0',c:5.5,u:'L',ins:320,m:240},
+  to_yr11_13:{b:'Toyota',n:'Yaris 1.3 Xi (2011)',s:'Toyota Yaris 1.3',c:6.0,u:'L',ins:340,m:240},
+  to_yr14_10:{b:'Toyota',n:'Yaris 1.0 (2014)',s:'Toyota Yaris 1.0',c:5.3,u:'L',ins:350,m:230},
+  to_yr14_13:{b:'Toyota',n:'Yaris 1.3 (2014)',s:'Toyota Yaris 1.3',c:5.8,u:'L',ins:370,m:230},
+  to_yr14_15:{b:'Toyota',n:'Yaris 1.5 Xs (2014)',s:'Toyota Yaris 1.5',c:6.0,u:'L',ins:400,m:250},
+  to_yr14_15c:{b:'Toyota',n:'Yaris 1.5 Cross (2014)',s:'Toyota Yaris Cross 1.5',c:6.5,u:'L',ins:420,m:260},
+  to_yr20_xi:{b:'Toyota',n:'Yaris 1.5 Xi (2020)',s:'Toyota Yaris 1.5 Xi',c:5.5,u:'L',ins:450,m:250},
+  to_yr20_xs:{b:'Toyota',n:'Yaris 1.5 Xs (2020)',s:'Toyota Yaris 1.5 Xs',c:5.5,u:'L',ins:480,m:260},
   starlet:{b:'Toyota',n:'Starlet 1.5 Xs',s:'Toyota Starlet',c:5.8,u:'L',ins:480,m:270},
   to_yc:{b:'Toyota',n:'Yaris Cross 1.5',s:'Toyota Yaris Cross',c:5.8,u:'L',ins:550,m:300},
   corolla:{b:'Toyota',n:'Corolla 1.8 Xs',s:'Toyota Corolla',c:6.5,u:'L',ins:650,m:350},
@@ -955,7 +994,21 @@ var EV={
   ge_e2a:{b:'Geely',n:'E2 Aspire',s:'Geely E2 Aspire',f:'Geely E2 Aspire',c:15.2,bat:39.4,rng:325,ins:800,p:350000},
   ge_e2x:{b:'Geely',n:'E2 Apex',s:'Geely E2 Apex',f:'Geely E2 Apex',c:15.2,bat:39.4,rng:325,ins:800,p:400000},
   ge_e5:{b:'Geely',n:'Galaxy E5 Standard',s:'Geely E5',f:'Geely Galaxy E5 Standard',c:14.0,bat:49.52,rng:354,ins:900,p:480000},
-  ge_e5lr:{b:'Geely',n:'Galaxy E5 Long Range',s:'Geely E5 LR',f:'Geely Galaxy E5 Long Range',c:14.2,bat:60.22,rng:424,ins:900,p:550000}
+  ge_e5lr:{b:'Geely',n:'Galaxy E5 Long Range',s:'Geely E5 LR',f:'Geely Galaxy E5 Long Range',c:14.2,bat:60.22,rng:424,ins:900,p:550000},
+  // MG
+  mg4_sr:{b:'MG',n:'MG4 Standard',s:'MG MG4',f:'MG MG4 Standard',c:14.6,bat:51,rng:350,ins:900,p:550000},
+  mg4_lr:{b:'MG',n:'MG4 Long Range',s:'MG MG4 LR',f:'MG MG4 Long Range',c:14.2,bat:64,rng:450,ins:900,p:650000},
+  mg4_xp:{b:'MG',n:'MG4 XPower AWD',s:'MG MG4 XPower',f:'MG MG4 XPower AWD',c:16.2,bat:64,rng:395,ins:1000,p:750000},
+  mgzs_sr:{b:'MG',n:'ZS EV Standard',s:'MG ZS EV',f:'MG ZS EV Standard',c:15.9,bat:51,rng:320,ins:850,p:520000},
+  mgzs_lr:{b:'MG',n:'ZS EV Long Range',s:'MG ZS EV LR',f:'MG ZS EV Long Range',c:16.5,bat:72.6,rng:440,ins:900,p:620000},
+  // Omoda (Chery)
+  omoda_e5:{b:'Omoda',n:'E5 Electric',s:'Omoda E5',f:'Omoda E5 Electric',c:14.2,bat:61.1,rng:430,ins:900,p:600000},
+  // JAC
+  jac_e:{b:'JAC',n:'e-JS1',s:'JAC e-JS1',f:'JAC e-JS1',c:15.1,bat:30.2,rng:200,ins:500,p:300000},
+  // Changan
+  ch_uni:{b:'Changan',n:'Uni-V EV',s:'Changan Uni-V EV',f:'Changan Uni-V EV',c:13.8,bat:55.08,rng:400,ins:800,p:500000},
+  // Steller (DFSK)
+  st_3e:{b:'Steller',n:'3e',s:'Steller 3e',f:'Steller 3e',c:12.5,bat:31.4,rng:251,ins:600,p:280000}
 };
 
 function g(id){return document.getElementById(id)}
